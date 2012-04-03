@@ -1,5 +1,5 @@
 body{
-  background-image: url('/img/background.png');
+  background-image: url('../img/background.png');
   font-family: font-family:"Gill Sans",Geneva,Tahoma,Arial,sans-serif;
 }
 
@@ -40,7 +40,7 @@ h4 {
   }
 
     #openbudget header nav ul li{
-      background: url('/img/arrow_downwards.png') no-repeat center right;
+      background: url('../img/arrow_downwards.png') no-repeat center right;
       padding-right: 5px;
       margin: 0 0 0 20px;
       font-size: 15px;
@@ -87,10 +87,11 @@ h4 {
         width: 540px;
         height: 40px;
         padding: 0 10px;
-        background-image: url('/img/search_field_middle.png');
+        background-image: url('../img/search_field_middle.png');
         border: 0 none;
         font-size: 15px;
         color: #CCCCCC;
+        vertical-align: middle;
       }
 
       #openbudget #results .search form input.mag_glass {
@@ -99,7 +100,7 @@ h4 {
         right: 10px;
         width: 20px;
         height: 20px;
-        background-image: url('/img/magnifier_icon.png');
+        background-image: url('../img/magnifier_icon.png');
         border: 0 none;
       }
 
