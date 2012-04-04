@@ -26,5 +26,11 @@ var CaseStudies = CartoDB.CartoDBCollection.extend({
     "title":                 "title",
     "video":                 "video",
     "website":               "website"
+  },
+
+  getByCartoDBId: function(id){
+    return _.find(this.models, function(model){
+      return model.get('cartodb_id') == id;
+    });
   }
 });
