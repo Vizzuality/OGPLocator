@@ -1,6 +1,6 @@
 body{
   background-image: url('../img/background.png');
-  font-family: font-family:"Gill Sans",Geneva,Tahoma,Arial,sans-serif;
+  font-family: "Gill Sans", Geneva, Tahoma, Arial, sans-serif;
 }
 
 h1, h2, h3, h4 {
@@ -41,7 +41,7 @@ h4 {
 
     #openbudget header nav ul li{
       background: url('../img/arrow_downwards.png') no-repeat center right;
-      padding-right: 5px;
+      padding-right: 8px;
       margin: 0 0 0 20px;
       font-size: 15px;
       text-transform: uppercase;
