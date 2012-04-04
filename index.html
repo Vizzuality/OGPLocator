@@ -44,41 +44,10 @@
       		<input class="mag_glass" type="submit" value="" />
       	</form>
 
-      	<div class="summary">106 case studies:</div>
+      	<div class="summary">{{number_of_cases}} case studies:</div>
 
-      	<ul>
+      	<ul></ul>
 
-      		<li>
-      			<h3>Citizen budget in Guatemala</h3>
-      			<span class="desc">A dialogue between government and citizens</span>
-      			<span class="where">Open Budget in Honduras</span>
-      		</li>
-
-      		<li>
-      			<h3>Citizen budget in Guatemala</h3>
-      			<span class="desc">A dialogue between government and citizens</span>
-      			<span class="where">Open Budget in Honduras</span>
-      		</li>
-
-      		<li>
-      			<h3>Citizen budget in Guatemala</h3>
-      			<span class="desc">A dialogue between government and citizens</span>
-      			<span class="where">Open Budget in Honduras</span>
-      		</li>
-
-      		<li>
-      			<h3>Citizen budget in Guatemala</h3>
-      			<span class="desc">A dialogue between government and citizens</span>
-      			<span class="where">Open Budget in Honduras</span>
-      		</li>
-
-      		<li>
-      			<h3>Citizen budget in Guatemala</h3>
-      			<span class="desc">A dialogue between government and citizens</span>
-      			<span class="where">Open Budget in Honduras</span>
-      		</li>
-
-      	</ul>
       </div>
       <div class="sidebar">
       	<div>
@@ -96,6 +65,14 @@
     </div>
 
 
+  </script>
+
+  <script id="index_list_item" type="text/html">
+    <li>
+      <h3>{{title}}</h3>
+      <span class="desc">{{subtitle}}</span>
+      <span class="where">Open Budget in {{country}}</span>
+    </li>
   </script>
 
   <script id="detail" type="text/html">

@@ -28,6 +28,3 @@ var CaseStudies = CartoDB.CartoDBCollection.extend({
     "website":               "website"
   }
 });
-
-var cases = new CaseStudies();
-cases.fetch();

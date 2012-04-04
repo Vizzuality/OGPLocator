@@ -15,8 +15,9 @@ var MainRouter = Backbone.Router.extend({
 
   index: function(){
     if (!this.indexView){
-      this.indexView = new IndexView({router: this});
-      this.indexView.render();
+      this.indexView = new IndexView({
+        router: this
+      });
     }
   },
 
