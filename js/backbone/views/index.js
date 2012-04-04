@@ -1,30 +1,31 @@
 window.IndexView = Backbone.View.extend({
 
+  el: $('#openbudget')[0],
+
+  events: {
+    'click .search ul li a': 'showDetail'
+  },
+
   initialize: function(){
     this.router = this.options.router;
     Cases.bind('reset', this.render, this);
-    Cases.fetch();
-  },
-
-  events: {
-    'click #results .search ul li a': 'showDetail'
   },
 
   render: function(){
-    var that = this;
-
-    $(this.el).html(ich.index({number_of_cases: Cases.length}));
+    this.template = ich.index({number_of_cases: Cases.length});
 
     _.each(Cases.models, function(case_study){
-      that.$el.find('#results .search ul').append(ich.index_list_item(case_study.toJSON()));
-    })
+      $(this.template).find('#results .search ul').append(ich.index_list_item(case_study.toJSON()));
+    }, this);
 
-    $('#openbudget').html(this.$el);
+    this.$el.html(this.template);
+
+    return this;
   },
 
   showDetail: function(evt){
     evt.preventDefault();
-    this.router.navigate($(evt.target).attr('href'), true)
+    this.router.navigate($(evt.target).attr('href'), true);
   }
 
 });

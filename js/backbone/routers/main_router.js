@@ -15,6 +15,7 @@ var MainRouter = Backbone.Router.extend({
         router: this
       });
     }
+    this.indexView.render();
   },
 
   detail: function(id){
@@ -23,8 +24,8 @@ var MainRouter = Backbone.Router.extend({
         router: this,
         case_id: id
       });
-      this.detailView.render();
     }
+    this.detailView.render();
   }
 
 });

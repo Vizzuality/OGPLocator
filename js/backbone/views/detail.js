@@ -1,33 +1,39 @@
 window.DetailView = Backbone.View.extend({
 
+  el: $('#openbudget')[0],
+
   initialize: function(){
     this.router = this.options.router;
     this.case_id = this.options.case_id;
-    Cases.bind('reset', this.render, this);
+    Cases.bind('reset', this.reloadCase, this);
+
+    Case = Cases.getByCartoDBId(this.case_id);
     if (Case == null){
       Cases.fetch();
+      return;
     }
+    this.template = ich.detail(Case.toJSON());
   },
 
   events: {
+    'click #back': 'showIndex'
   },
 
   render: function(){
-    Case = Cases.getByCartoDBId(this.case_id);
-    if (Case == null) { return; }
+    this.$el.html(this.template);
 
-    var that = this;
-
-    console.log(Case.toJSON());
-    $(this.el).html(ich.detail(Case.toJSON()));
-
-    $('#openbudget').html(this.$el);
+    return this;
   },
 
-  showDetail: function(evt){
+  showIndex: function(evt){
     evt.preventDefault();
 
-    this.router.navigate('detail/' + $(this).attr('rel'))
-  }
+    this.router.navigate('', true)
+  },
 
+  reloadCase: function(){
+    Case = Cases.getByCartoDBId(this.case_id);
+    this.template = ich.detail(Case.toJSON());
+    this.render();
+  }
 });

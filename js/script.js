@@ -1,6 +1,11 @@
+var app   = null;
 var Cases = new CaseStudies();
-var Case = null;
+var Case  = null;
 
 $(function(){
-  app = new MainRouter();
+  Cases.fetch({
+    success: function(){
+      app = new MainRouter();
+    }
+  });
 });

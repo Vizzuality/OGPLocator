@@ -4,7 +4,7 @@
  * backbone cartodb adapter
  *
  * this is a small library that allows to use Backbone with models
- * to work with data stored in CartoDB (a geospatial database on 
+ * to work with data stored in CartoDB (a geospatial database on
  * the cloud, see more info at http://cartodb.com).
  *
  * it does NOT overrride Backbone.sync
@@ -44,7 +44,7 @@ Backbone.CartoDB = function(options, query, cache) {
      * fetch sql from the server
      *
      * this function should be changed if you're working on node
-     * 
+     *
      */
     query = query || function(sql, callback, proxy) {
         var url = resource_url;
@@ -61,9 +61,9 @@ Backbone.CartoDB = function(options, query, cache) {
               dataType: 'json',
               data: 'q=' + encodeURIComponent(sql),
               success: callback,
-              error: function(){ 
+              error: function(){
                 if(proxy) {
-                    callback(); 
+                    callback();
                 } else {
                     //try fallback
                     if(USE_PROXY) {
@@ -76,8 +76,8 @@ Backbone.CartoDB = function(options, query, cache) {
              // TODO: add timeout
              $.getJSON(resource_url + '?q=' + encodeURIComponent(sql) + '&callback=?')
              .success(callback)
-             .fail(function(){ 
-                    callback(); 
+             .fail(function(){
+                    callback();
              }).complete(function() {
              });
         }
@@ -96,7 +96,7 @@ Backbone.CartoDB = function(options, query, cache) {
 
       _create_sql: function() {
         var where_ = SQL(" where {0} = '{1}'").format(
-            this.columns[this.what], 
+            this.columns[this.what],
             this.get(this.what).replace("'", "''")
         );
         var select = this._sql_select();
@@ -182,7 +182,7 @@ var Note = Backbone.Model.extend({
         return sql;
       },
 
-      fetch: function() {
+      fetch: function(options) {
         var self = this;
         var sql = this.sql || this._create_sql();
         if(typeof(sql) === "function") {
@@ -205,6 +205,11 @@ var Note = Backbone.Model.extend({
                   rows = data.rows;
               }
               self.reset(rows);
+              if (options) {
+                if (options.success) {
+                  options.success.call(this);
+                }
+              }
             });
         } else {
             self.reset(JSON.parse(item));

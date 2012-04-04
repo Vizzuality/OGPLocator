@@ -158,7 +158,7 @@ h6 {
 
     #openbudget .two_columns .right {
       width: 259px;
-      padding: 32px;
+      padding: 0 32px;
     }
 
       #openbudget .two_columns .right div {
@@ -196,7 +196,7 @@ h6 {
   display: block;
   margin: 20px 0;
   padding-left: 8px;
-  background: url('/OGPLocator/img/arrow_downwards.png') no-repeat center left;
+  background: url('/OGPLocator/img/arrow_left.png') no-repeat center left;
   font-size: 15px;
   color: black;
   text-transform: uppercase;
@@ -228,3 +228,9 @@ h6 {
     #openbudget #case_detail .container div p {
       font-size: 15px;
     }
+
+  #openbudget #case_detail #mini_map{
+    width: 298px;
+    height: 348px;
+    border: 1px solid rgba(0, 0, 0, 0.15)
+  }
