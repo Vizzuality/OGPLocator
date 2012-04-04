@@ -3,7 +3,7 @@ body{
   font-family: "Gill Sans", Geneva, Tahoma, Arial, sans-serif;
 }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
   line-height: 30px;
   text-transform: uppercase;
@@ -27,7 +27,7 @@ h4 {
 }
 
 h6 {
-
+  font-size: 13px;
 }
 
 #openbudget{
@@ -233,4 +233,18 @@ h6 {
     width: 298px;
     height: 348px;
     border: 1px solid rgba(0, 0, 0, 0.15)
+  }
+
+  #openbudget #case_detail .sidebar li {
+    margin: 20px 0;
+  }
+
+  #openbudget #case_detail .sidebar h6 {
+    line-height: 13px;
+    margin: 0;
+  }
+
+  #openbudget #case_detail .sidebar li span {
+    font-size: 13px;
+    color: #8A9298;
   }
