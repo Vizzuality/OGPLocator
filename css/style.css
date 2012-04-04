@@ -1,5 +1,5 @@
 body{
-  background-image: url('../img/background.png');
+  background-image: url('/OGPLocator/img/background.png');
   font-family: "Gill Sans", Geneva, Tahoma, Arial, sans-serif;
 }
 
@@ -9,6 +9,9 @@ h1, h2, h3, h4 {
 }
 
 h1 {
+}
+
+h2 {
   font-size: 32px;
 }
 
@@ -20,12 +23,20 @@ h4 {
   font-size: 18px;
 }
 
+h5 {
+
+}
+
+h6 {
+
+}
+
 #openbudget{
   width: 960px;
   margin: 0 auto;
   padding-bottom: 40px;
 }
-  #openbudget header h1{
+  #openbudget header h2{
     display: inline-block;
     vertical-align: middle;
     *display: inline;
@@ -54,11 +65,11 @@ h4 {
     border: 1px solid rgba(0, 0, 0, 0.15)
   }
 
-  #openbudget #results{
+  #openbudget .two_columns{
 
   }
 
-    #openbudget #results .search, #openbudget #results .sidebar {
+    #openbudget .two_columns .left, #openbudget .two_columns .right {
       display: inline-block;
       vertical-align: middle;
       *display: inline;
@@ -66,12 +77,19 @@ h4 {
       vertical-align: top;
     }
 
-    #openbudget #results .search {
+    #openbudget .two_columns .left {
+    }
+
+    #openbudget .two_columns .left .container {
       width: 566px;
-      min-height: 638px;
       padding: 32px;
+      margin-bottom: 30px;
       background-color: white;
       border: 1px solid #CCCCCC;
+    }
+
+    #openbudget #results .search {
+      min-height: 638px;
     }
 
     #openbudget #results .search form {
@@ -87,7 +105,7 @@ h4 {
         width: 540px;
         height: 40px;
         padding: 0 10px;
-        background-image: url('../img/search_field_middle.png');
+        background-image: url('/OGPLocator/img/search_field_middle.png');
         border: 0 none;
         font-size: 15px;
         color: #CCCCCC;
@@ -100,7 +118,7 @@ h4 {
         right: 10px;
         width: 20px;
         height: 20px;
-        background-image: url('../img/magnifier_icon.png');
+        background-image: url('/OGPLocator/img/magnifier_icon.png');
         border: 0 none;
       }
 
@@ -126,40 +144,51 @@ h4 {
           text-transform: none;
         }
 
-        #openbudget #results .search ul li span {
-          font-size: 13px;
+        #openbudget #results .search ul li a {
+          font-size: inherit;
+          text-decoration: none;
+          color: inherit;
         }
 
-        #openbudget #results .search ul li span.desc:after {
+        #openbudget #results .search ul li a.desc, #openbudget #results .search ul li a.where {
+          font-size: 13px;
+        }
+        #openbudget #results .search ul li a.desc:after {
           content: '\00a0\00b7\00a0';
         }
 
-    #openbudget #results .sidebar {
+    #openbudget .two_columns .right {
       width: 259px;
       padding: 32px;
     }
 
-      #openbudget #results .sidebar div {
+      #openbudget .two_columns .right div {
         margin-bottom: 32px;
         border-bottom: 1px solid rgba(0, 102, 153, 0.10);
       }
 
-      #openbudget #results .sidebar div.last {
+      #openbudget .two_columns .right div.last {
         border-bottom: 0 none;
       }
 
-        #openbudget #results .sidebar div h4 {
+        #openbudget .two_columns .right div h4 {
           margin: 0;
         }
 
-        #openbudget #results .sidebar div p {
+        #openbudget .two_columns .right div p {
           margin: 0 0 26px;
           font-size: 13px;
           color: #8A9298;
         }
 
-        #openbudget #results .sidebar div a {
+        #openbudget .two_columns .right div a {
           font-size: 13px;
           color: #FA5200;
           text-decoration: none;
         }
+
+      #openbudget .two_columns .right div ul{
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+      }

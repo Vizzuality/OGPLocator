@@ -6,6 +6,10 @@ window.IndexView = Backbone.View.extend({
     Cases.fetch();
   },
 
+  events: {
+    'click #results .search ul li a': 'showDetail'
+  },
+
   render: function(){
     var that = this;
 
@@ -15,7 +19,12 @@ window.IndexView = Backbone.View.extend({
       that.$el.find('#results .search ul').append(ich.index_list_item(case_study.toJSON()));
     })
 
-    $('#openbudget').append(this.$el);
+    $('#openbudget').html(this.$el);
+  },
+
+  showDetail: function(evt){
+    evt.preventDefault();
+    this.router.navigate($(evt.target).attr('href'), true)
   }
 
 });

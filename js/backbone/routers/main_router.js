@@ -1,11 +1,7 @@
 var MainRouter = Backbone.Router.extend({
 
   initialize: function(){
-    var root = '';
-    if (window.location.href.indexOf('OGPLocator') > 0){
-      root = '/OGPLocator/';
-    }
-    Backbone.history.start({pushState: true, root: root});
+    Backbone.history.start({pushState: true, root: '/OGPLocator/'});
   },
 
   routes: {
@@ -22,7 +18,13 @@ var MainRouter = Backbone.Router.extend({
   },
 
   detail: function(id){
-
+    if (!this.detailView){
+      this.detailView = new DetailView({
+        router: this,
+        case_id: id
+      });
+      this.detailView.render();
+    }
   }
 
 });
