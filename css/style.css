@@ -30,11 +30,23 @@ h6 {
   font-size: 13px;
 }
 
-#openbudget{
+#openbudget a {
+  float: none;
+  background: transparent;
+  display: inline;
+  color: black;
+  font-weight: normal;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+#openbudget {
   width: 960px;
   margin: 0 auto;
   padding-bottom: 40px;
 }
+
   #openbudget header h2, #openbudget header nav {
     display: inline-block;
     vertical-align: middle;
@@ -49,13 +61,61 @@ h6 {
     text-align: right;
   }
 
-    #openbudget header nav ul li{
+    #openbudget header nav li.menu{
+      position: relative;
       background: url('../img/arrow_downwards.png') no-repeat center right;
       padding-right: 8px;
       margin: 0 0 0 20px;
       font-size: 15px;
       text-transform: uppercase;
     }
+
+      #openbudget header nav .filters{
+        position: absolute;
+        display: none;
+        width: 135px;
+        left: 50%;
+        top: 33px;
+        margin-left: -87.5px;
+        padding: 0 20px;
+        background: transparent url('/OGPLocator/img/menu_middle.png') repeat-y center center;
+        text-align: left;
+      }
+
+      #openbudget header nav .filters.show{
+        display: block;
+        z-index: 1;
+      }
+
+        #openbudget header nav .filters img {
+          position: absolute;
+        }
+
+        #openbudget header nav .filters img.border_top {
+          top: -17px;
+          left: 0;
+        }
+
+        #openbudget header nav .filters img.border_bottom {
+          bottom: -16px;
+          left: 0;
+        }
+
+        #openbudget header nav .filters li {
+          display: block;
+        }
+
+        #openbudget header nav .filters a {
+          display: inline;
+          float: none;
+          background-color: transparent;
+          margin: 0;
+          padding: 0;
+          color: #FA5200;
+          font-size: 13px;
+          font-weight: normal;
+        }
+
 
   #openbudget #map{
     width: 960px;
