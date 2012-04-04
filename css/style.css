@@ -117,7 +117,7 @@ h6 {
         right: 10px;
         width: 20px;
         height: 20px;
-        background-image: url('/OGPLocator/img/magnifier_icon.png');
+        background: transparent url("/OGPLocator/img/magnifier_icon.png") no-repeat center center;
         border: 0 none;
       }
 
