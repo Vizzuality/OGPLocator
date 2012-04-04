@@ -35,16 +35,16 @@ h6 {
   margin: 0 auto;
   padding-bottom: 40px;
 }
-  #openbudget header h2{
+  #openbudget header h2, #openbudget header nav {
     display: inline-block;
     vertical-align: middle;
     *display: inline;
     *zoom: 1;
+    float: none;
   }
 
   #openbudget header nav{
-    width: 55%;
-    margin: 21px 0;
+    width: 63%;
     vertical-align: middle;
     text-align: right;
   }

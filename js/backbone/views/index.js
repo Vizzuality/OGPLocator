@@ -20,12 +20,20 @@ window.IndexView = Backbone.View.extend({
 
     this.$el.html(this.template);
 
+    this.initMap();
+
     return this;
   },
 
   showDetail: function(evt){
     evt.preventDefault();
     this.router.navigate($(evt.target).attr('href'), true);
+  },
+
+  initMap: function(){
+    if (!this.map){
+      map = new google.maps.Map(this.$el.find('#map')[0], map_options);
+    }
   }
 
 });

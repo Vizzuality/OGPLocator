@@ -22,6 +22,8 @@ window.DetailView = Backbone.View.extend({
   render: function(){
     this.$el.html(this.template);
 
+    this.initMap();
+
     return this;
   },
 
@@ -35,5 +37,16 @@ window.DetailView = Backbone.View.extend({
     Case = Cases.getByCartoDBId(this.case_id);
     this.template = ich.detail(Case.toJSON());
     this.render();
+  },
+
+  initMap: function(){
+    if (!this.map){
+      map = new google.maps.Map(this.$el.find('#mini_map')[0]);
+    }
+    var the_geom = Case.get('the_geom');
+    if (the_geom && the_geom.coordinates){
+      mini_map_options['center'] = new google.maps.LatLng(the_geom.coordinates[1], the_geom.coordinates[0]);
+    }
+    map.setOptions(mini_map_options);
   }
 });
