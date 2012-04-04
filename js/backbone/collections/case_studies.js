@@ -8,7 +8,7 @@ var CaseStudies = CartoDB.CartoDBCollection.extend({
     "cartodb_id":            "cartodb_id",
     "the_geom":              "the_geom",
     "background":            "background",
-    "category":              "category",
+    "category_id":           "category_id",
     "contact_information":   "contact_information",
     "country":               "country",
     "critical_issues":       "critical_issues",

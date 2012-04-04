@@ -85,7 +85,7 @@
   <script id="detail" type="text/html">
 
     <header>
-      <a href="/OGPLocator/">Back to explorer</a>
+      <a id="back" href="/OGPLocator/">Back to explorer</a>
     </header>
 
     <div id="case_detail" class="two_columns">
@@ -94,26 +94,28 @@
 
         <div class="container">
 
-          <h1>{{title}}</h1>
-          <span>{{subtitle}}</span>
+          <header>
+            <h1>{{title}}</h1>
+            <span>{{subtitle}}</span>
+          </header>
 
           <div>
-            <h5>Overview</h5>
+            <h4>Overview</h4>
             <p>{{overview}}</p>
           </div>
 
           <div>
-            <h5>Background</h5>
+            <h4>Background</h4>
             <p>{{background}}</p>
           </div>
 
           <div>
-            <h5>Implementation</h5>
+            <h4>Implementation</h4>
             <p>{{implementation}}</p>
           </div>
 
           <div>
-            <h5>Critical issues & Achievements</h5>
+            <h4>Critical issues & Achievements</h4>
             <p>{{critical_issues}}</p>
           </div>
 
