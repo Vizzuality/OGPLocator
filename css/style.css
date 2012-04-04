@@ -131,7 +131,7 @@ h4 {
         }
 
         #openbudget #results .search ul li span.desc:after {
-          content: '\00a0\00b7';
+          content: '\00a0\00b7\00a0';
         }
 
     #openbudget #results .sidebar {
