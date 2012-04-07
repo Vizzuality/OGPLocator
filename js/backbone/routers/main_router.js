@@ -15,7 +15,7 @@ var MainRouter = Backbone.Router.extend({
   },
 
   detail: function(id){
-    this.detail_view().render();
+    this.detail_view(id).render();
   },
 
   filter: function(filter, id){
@@ -31,7 +31,7 @@ var MainRouter = Backbone.Router.extend({
     return this.indexView;
   },
 
-  detail_view: function(){
+  detail_view: function(id){
     if (!this.detailView){
       this.detailView = new DetailView({
         router: this,
