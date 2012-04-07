@@ -9,6 +9,22 @@ get '/OGPLocator/' do
   File.read(File.join('index.html'))
 end
 
+get '/OGPLocator/challenge/:id' do
+  File.read(File.join('index.html'))
+end
+
+get '/OGPLocator/category/:id' do
+  File.read(File.join('index.html'))
+end
+
+get '/OGPLocator/sector/:id' do
+  File.read(File.join('index.html'))
+end
+
+get '/OGPLocator/country/:id' do
+  File.read(File.join('index.html'))
+end
+
 get '/OGPLocator/detail/:id' do
   File.read(File.join('index.html'))
 end

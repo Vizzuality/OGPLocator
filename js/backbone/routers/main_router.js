@@ -5,27 +5,40 @@ var MainRouter = Backbone.Router.extend({
   },
 
   routes: {
-    '':           'index',
-    'detail/:id': 'detail'
+    '':                         'index',
+    'detail/:id':               'detail',
+    ':filter/:challenge_id':    'filter'
   },
 
   index: function(){
+    this.index_view().render();
+  },
+
+  detail: function(id){
+    this.detail_view().render();
+  },
+
+  filter: function(filter, id){
+    this.index_view().filterBy(filter, id);
+  },
+
+  index_view: function(){
     if (!this.indexView){
       this.indexView = new IndexView({
         router: this
       });
     }
-    this.indexView.render();
+    return this.indexView;
   },
 
-  detail: function(id){
+  detail_view: function(){
     if (!this.detailView){
       this.detailView = new DetailView({
         router: this,
         case_id: id
       });
     }
-    this.detailView.render();
+    return this.detailView;
   }
 
 });

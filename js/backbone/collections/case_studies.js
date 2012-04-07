@@ -3,14 +3,22 @@ var CartoDB = Backbone.CartoDB({
 });
 
 var CaseStudies = CartoDB.CartoDBCollection.extend({
+  valid_filters: {
+    'country'   : 'country_id',
+    'sector'    : 'sector',
+    'category'  : 'country_id',
+    'challenge' : 'ogp_grandchallenges_id'
+  },
+
   table: 'case_studies',
+
   columns: {
     "cartodb_id"             : "cartodb_id",
     "the_geom"               : "the_geom",
     "background"             : "background",
     "category_id"            : "category_id",
     "contact_information"    : "contact_information",
-    "country"                : "country",
+    "country_id"             : "country_id",
     "critical_issues"        : "critical_issues",
     "implementation"         : "implementation",
     "implementing_partners"  : "implementing_partners",
@@ -32,5 +40,13 @@ var CaseStudies = CartoDB.CartoDBCollection.extend({
     return _.find(this.models, function(model){
       return model.get('cartodb_id') == id;
     });
+  },
+
+  filterBy: function(filter, id, callback){
+    filter = this.valid_filters[filter];
+    if (filter){
+      this.where_ = filter + " = " + id;
+    }
+    this.fetch();
   }
 });

@@ -3,15 +3,22 @@ window.IndexView = Backbone.View.extend({
   el: $('#openbudget')[0],
 
   events: {
-    'click .search ul li a':                        'showDetail',
-    'click div#openbudget header li.menu a.filter': 'toggleFilter',
-    'click div#openbudget header li.menu':          'stopPropagation'
+    'click .search ul li a':                           'showDetail',
+    'click div#openbudget header li.menu a.filter':    'toggleFilter',
+    'click div#openbudget header li.menu':             'stopPropagation',
+    'click div#openbudget header div.filters ul li a': 'navigateToFilter'
   },
 
   initialize: function(){
     this.router = this.options.router;
     Cases.bind('reset', this.render, this);
     $(document).click(this.hideFilters);
+  },
+
+  initMap: function(){
+    if (!this.map){
+      map = new google.maps.Map(this.$el.find('#map')[0], map_options);
+    }
   },
 
   render: function(){
@@ -28,15 +35,18 @@ window.IndexView = Backbone.View.extend({
     return this;
   },
 
+  navigateToFilter: function(evt){
+    evt.preventDefault();
+    this.router.navigate($(evt.currentTarget).attr('href'), true);
+  },
+
+  filterBy: function(filter, id){
+    Cases.filterBy(filter, id);
+  },
+
   showDetail: function(evt){
     evt.preventDefault();
     this.router.navigate($(evt.target).attr('href'), true);
-  },
-
-  initMap: function(){
-    if (!this.map){
-      map = new google.maps.Map(this.$el.find('#map')[0], map_options);
-    }
   },
 
   toggleFilter: function(evt){
