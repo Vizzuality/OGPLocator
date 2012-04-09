@@ -4,6 +4,7 @@ window.IndexView = Backbone.View.extend({
 
   events: {
     'click .search ul li a':                           'showDetail',
+    'click .infowindow h3 a':                          'showDetail',
     'click div#openbudget header li.menu a.filter':    'toggleFilter',
     'click div#openbudget header li.menu':             'stopPropagation',
     'click div#openbudget header div.filters ul li a': 'navigateToFilter'
@@ -39,9 +40,12 @@ window.IndexView = Backbone.View.extend({
       customZoomControl.index = 1;
       map.controls[google.maps.ControlPosition.TOP_RIGHT].push(customZoomControl);
 
+      infoWindow = new InfoWindow({
+        map: map
+      });
+
       _.each(Cases.models, function(case_study){
-        var country = CountriesWithGeom.getByCartoDBId(case_study.get('country_id'));
-        addMarker($.parseJSON(country.get('latlon')));
+        addMarker(case_study);
       });
     }
   },
@@ -79,6 +83,7 @@ window.IndexView = Backbone.View.extend({
   },
 
   showDetail: function(evt){
+    console.log(evt);
     evt.preventDefault();
     this.router.navigate($(evt.target).attr('href'), true);
   },

@@ -22,8 +22,9 @@ var mini_map_options = {
   overviewMapControl: false,
   zoomControl: false,
   styles: blueMap()
-
 };
+
+var infoWindow = null;
 
 function blueMap(){
   return [{
@@ -90,15 +91,20 @@ function CustomZoomControl(map){
   return controlDiv;
 }
 
-function addMarker(latlon){
-  latlon = latlon.coordinates;
+function addMarker(case_study){
+  latlon = case_study.getLatLong().coordinates;
 
-  new google.maps.Marker({
+  var marker = new google.maps.Marker({
     position: new google.maps.LatLng(latlon[1], latlon[0]),
     map: map,
-    title: 'My workplace',
+    title: case_study.get('name'),
     clickable: true,
     icon: '/OGPLocator/img/marker_single_selected.png'
+  });
+
+  google.maps.event.addDomListener(marker, 'click', function(evt) {
+    infoWindow.setContent(case_study.toJSON());
+    infoWindow.open(evt.latLng);
   });
 }
 

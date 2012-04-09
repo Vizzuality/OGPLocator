@@ -1,0 +1,48 @@
+#map .infowindow {
+  position: absolute;
+  padding: 10px 20px;
+  background: transparent url('/OGPLocator/img/infowindow_middle.png') repeat-y center center;
+}
+
+  #map .infowindow .close {
+    position: absolute;
+    top: 6px;
+    right: 11px;
+    display: block;
+    width: 5px;
+    height: 5px;
+    background: transparent url('/OGPLocator/img/close_icon.png') no-repeat center center;
+  }
+
+  #map .infowindow .t, #map .infowindow .b {
+    position: absolute;
+    left: 0;
+    width: 250px;
+  }
+
+  #map .infowindow .t {
+    top: -4px;
+    height: 4px;
+    background: transparent url('/OGPLocator/img/infowindow_top.png') no-repeat center center;
+  }
+
+  #map .infowindow .b {
+    bottom: -14px;
+    height: 14px;
+    background: transparent url('/OGPLocator/img/infowindow_bottom.png') no-repeat center center;
+  }
+
+  #map .infowindow .content {
+  }
+
+    #map .infowindow .content h3 {
+      margin: 3px 0;
+      line-height: 13px;
+      font-family: "Gill Sans", Geneva, Tahoma, Arial, sans-serif;
+      text-transform: none;
+    }
+
+      #map .infowindow .content h3 a {
+        color: #EB4600;
+        text-decoration: none;
+      }
