@@ -53,6 +53,16 @@ window.IndexView = Backbone.View.extend({
       countries_list.append(ich.filter_list_item({url: 'country/' + country.get('cartodb_id'), name: country.get('name')}));
     });
 
+    var topics_list = $('.filters.topics ul');
+    _.each(Topics.models, function(topic){
+      topics_list.append(ich.filter_list_item({url: 'topic/' + topic.get('cartodb_id'), name: topic.get('name')}));
+    });
+
+    var categories_list = $('.filters.categories ul');
+    _.each(Categories.models, function(category){
+      categories_list.append(ich.filter_list_item({url: 'category/' + category.get('cartodb_id'), name: category.get('name')}));
+    });
+
     var challenges_list = $('.filters.challenges ul');
     _.each(Challenges.models, function(challenge){
       challenges_list.append(ich.filter_list_item({url: 'challenge/' + challenge.get('cartodb_id'), name: challenge.get('name')}));

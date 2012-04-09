@@ -1,8 +1,8 @@
 var CaseStudies = CartoDB.CartoDBCollection.extend({
   valid_filters: {
     'country'   : 'country_id',
-    'sector'    : 'sector',
-    'category'  : 'country_id',
+    'topic'     : 'topic_id',
+    'category'  : 'category_id',
     'challenge' : 'ogp_grandchallenges_id'
   },
 
@@ -25,7 +25,6 @@ var CaseStudies = CartoDB.CartoDBCollection.extend({
     "resources_links"        : "resources_links",
     "resources_media"        : "resources_media",
     "subtitle"               : "subtitle",
-    "tags"                   : "tags",
     "title"                  : "title",
     "video"                  : "video",
     "website"                : "website"

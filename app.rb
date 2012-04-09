@@ -17,7 +17,7 @@ get '/OGPLocator/category/:id' do
   File.read(File.join('index.html'))
 end
 
-get '/OGPLocator/sector/:id' do
+get '/OGPLocator/topic/:id' do
   File.read(File.join('index.html'))
 end
 
