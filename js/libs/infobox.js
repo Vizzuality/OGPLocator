@@ -60,7 +60,6 @@ InfoWindow.prototype.setPosition = function() {
       div.style.left = (pixPosition.x - 122) + 'px';
       var actual_height = - $(div).outerHeight();
       div.style.top = (pixPosition.y + actual_height - 15) + 'px';
-      console.log(div.style.top);
     }
     this.show();
   }

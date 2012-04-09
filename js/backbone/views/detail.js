@@ -5,7 +5,7 @@ window.DetailView = Backbone.View.extend({
   initialize: function(){
     this.router = this.options.router;
     this.case_id = this.options.case_id;
-    Cases.bind('reset', this.reloadCase, this);
+    Cases.bind('reset', this.render, this);
   },
 
   events: {
@@ -35,12 +35,6 @@ window.DetailView = Backbone.View.extend({
     evt.preventDefault();
 
     this.router.navigate('', true)
-  },
-
-  reloadCase: function(){
-    Case = Cases.getByCartoDBId(this.case_id);
-    this.template = ich.detail(Case.toJSON());
-    this.render();
   },
 
   initMap: function(){

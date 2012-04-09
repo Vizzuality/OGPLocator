@@ -48,7 +48,6 @@ function CustomZoomControl(map){
 }
 
 function addMarker(map, case_study){
-  console.log(map);
   latlon = case_study.getLatLong().coordinates;
 
   var marker = new google.maps.Marker({
