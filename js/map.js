@@ -85,7 +85,7 @@ function addMarker(latlon){
   latlon = latlon.coordinates;
 
   new google.maps.Marker({
-    position: new google.maps.LatLng(latlon[0], latlon[1]),
+    position: new google.maps.LatLng(latlon[1], latlon[0]),
     map: map,
     title: 'My workplace',
     clickable: true,
