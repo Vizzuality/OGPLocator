@@ -166,58 +166,85 @@
       <div class="sidebar right">
         <div id="mini_map"></div>
 
+        {{#classification}}
       	<div>
           <h4>Classification</h4>
 
           <ul>
+            {{#category_id}}
             <li>
               <h6>Category</h6>
               <span>{{category_id}}</span>
             </li>
+            {{/category_id}}
+            {{#sector}}
             <li>
               <h6>Sector</h6>
               <span>{{sector}}</span>
             </li>
+            {{/sector}}
+            {{#tags}}
             <li>
               <h6>Tags</h6>
               <span>{{tags}}</span>
             </li>
+            {{/tags}}
           </ul>
 
       	</div>
+        {{/classification}}
 
+        {{#implementing_partners}}
       	<div>
           <h4>Implementing partners</h4>
           <p>{{implementing_partners}}</p>
       	</div>
+        {{/implementing_partners}}
 
+        {{#relevant_networks}}
       	<div>
           <h4>Relevant Networks</h4>
           <p>{{relevant_networks}}</p>
       	</div>
+        {{/relevant_networks}}
 
+        {{#contact_information}}
       	<div>
           <h4>Contact</h4>
           <p>{{contact_information}}</p>
       	</div>
+        {{/contact_information}}
 
+
+        {{#resources}}
       	<div>
           <h4>Related resources</h4>
           <ul>
+
+            {{#resources_media}}
           	<li>
           		<h6>Media</h6>
               <p>{{resources_media}}</p>
           	</li>
+            {{/resources_media}}
+
+            {{#resources_document}}
           	<li>
           		<h6>Documents</h6>
               <p>{{resources_document}}</p>
           	</li>
+            {{/resources_document}}
+
+            {{#resources_links}}
           	<li>
           		<h6>Links & Further reading</h6>
               <p>{{resources_links}}</p>
           	</li>
+            {{/resources_links}}
+
           </ul>
       	</div>
+        {{/resources}}
 
       	<div class="last">
           <ul>

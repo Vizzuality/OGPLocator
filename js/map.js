@@ -1,5 +1,5 @@
 var map_options = {
-  zoom: 3,
+  zoom: 2,
   center: new google.maps.LatLng(34.397, 0),
   mapTypeId: google.maps.MapTypeId.ROADMAP,
   panControl: false,
@@ -123,7 +123,7 @@ function setPolygon(coords){
     strokeColor: '#009933',
     strokeOpacity: 1,
     strokeWeight: 2,
-    fillColor: 'rgba(255, 255, 255, 0.3)',
+    fillColor: 'rgba(255, 255, 255, 0.6)',
     fillOpacity: 0.25
   });
 
