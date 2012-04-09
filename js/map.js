@@ -91,7 +91,8 @@ function CustomZoomControl(map){
   return controlDiv;
 }
 
-function addMarker(case_study){
+function addMarker(map, case_study){
+  console.log(map);
   latlon = case_study.getLatLong().coordinates;
 
   var marker = new google.maps.Marker({
@@ -108,7 +109,7 @@ function addMarker(case_study){
   });
 }
 
-function setPolygon(coords){
+function setPolygon(map, coords){
   coords = coords.coordinates;
   var paths = [];
 
@@ -134,7 +135,6 @@ function setPolygon(coords){
   });
 
   map.fitBounds(polygon.getBounds());
-
 }
 
 if (!google.maps.Polygon.prototype.getBounds) {

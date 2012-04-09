@@ -34,19 +34,19 @@ window.IndexView = Backbone.View.extend({
 
   initMap: function(){
     if (!this.map){
-      map = new google.maps.Map(this.$el.find('#map')[0], map_options);
+      this.map = new google.maps.Map(this.$el.find('#map')[0], map_options);
 
-      var customZoomControl = new CustomZoomControl(map);
+      var customZoomControl = new CustomZoomControl(this.map);
       customZoomControl.index = 1;
-      map.controls[google.maps.ControlPosition.TOP_RIGHT].push(customZoomControl);
+      this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(customZoomControl);
 
       infoWindow = new InfoWindow({
-        map: map
+        map: this.map
       });
 
       _.each(Cases.models, function(case_study){
-        addMarker(case_study);
-      });
+        addMarker(this.map, case_study);
+      }, this);
     }
   },
 
