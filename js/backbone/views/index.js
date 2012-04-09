@@ -34,17 +34,22 @@ window.IndexView = Backbone.View.extend({
 
     this.$el.html(this.template);
 
-    this._renderCountriesList();
+    this._renderFiltersLists();
 
     this.initMap();
 
     return this;
   },
 
-  _renderCountriesList: function(){
+  _renderFiltersLists: function(){
     var countries_list = $('.filters.countries ul');
     _.each(Countries.models, function(country){
-      countries_list.append(ich.countries_list_item({url: 'countries/' + country.get('cartodb_id'), name: country.get('name')}));
+      countries_list.append(ich.filter_list_item({url: 'country/' + country.get('cartodb_id'), name: country.get('name')}));
+    });
+
+    var challenges_list = $('.filters.challenges ul');
+    _.each(Challenges.models, function(challenge){
+      challenges_list.append(ich.filter_list_item({url: 'challenge/' + challenge.get('cartodb_id'), name: challenge.get('name')}));
     });
   },
 
