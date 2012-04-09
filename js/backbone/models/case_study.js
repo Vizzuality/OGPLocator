@@ -3,5 +3,9 @@ var CaseStudy = Backbone.Model.extend({
     return _.extend(this.attributes, {
       country: Countries.getByCartoDBId(this.get('country_id')).get('name')
     });
+  },
+
+  getPolygon: function(){
+    return $.parseJSON(CountriesWithGeom.getByCartoDBId(this.get('country_id')).get('the_geom'));
   }
 });

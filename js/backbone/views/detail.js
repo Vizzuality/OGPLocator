@@ -48,5 +48,7 @@ window.DetailView = Backbone.View.extend({
       mini_map_options['center'] = new google.maps.LatLng(the_geom.coordinates[1], the_geom.coordinates[0]);
     }
     map.setOptions(mini_map_options);
+
+    setPolygon(Case.getPolygon());
   }
 });
