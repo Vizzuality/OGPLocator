@@ -4,6 +4,12 @@ var CountriesCollection = CartoDB.CartoDBCollection.extend({
       SELECT c.cartodb_id, c.admin as name \
       FROM ogp_countries c \
       INNER JOIN case_studies cs ON cs.country_id = c.cartodb_id';
+  },
+
+  getByCartoDBId: function(id){
+    return _.find(this.models, function(model){
+      return model.get('cartodb_id') == id;
+    });
   }
 });
 
