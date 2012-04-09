@@ -34,7 +34,37 @@ window.IndexView = Backbone.View.extend({
 
   initMap: function(){
     if (!this.map){
+      
+      var mapChartLayer = new google.maps.ImageMapType({
+        getTileUrl: function(coord, zoom) {
+          var lULP = new google.maps.Point(coord.x*256,(coord.y+1)*256);
+          var lLRP = new google.maps.Point((coord.x+1)*256,coord.y*256);     
+          var projectionMap = new MercatorProjection();
+          var lULg = projectionMap.fromDivPixelToLatLng(lULP, zoom);
+          var lLRg = projectionMap.fromDivPixelToLatLng(lLRP, zoom);         
+          var countries = "SV|CD|GT|HN|MD|ML|ZM";
+          var data ="1,1,1,1,1,1,1";
+          var limits = "0,1";
+          var selected_color = "";
+
+
+                   var baseUrl="http://chart.apis.google.com/chart?chs=256x256&chd=t:"+data+"&chco=D0EAF5,FFFFB2,FFFFFF&chld="+countries+"&chf=a,s,B6DDEE|bg,s,00000000&chds="+limits;
+
+          var bbox="&cht=map:fixed=" + lULg.lat() +","+ lULg.lng() + "," + lLRg.lat() + "," + lLRg.lng();
+          return baseUrl+bbox;
+        },
+        tileSize: new google.maps.Size(256, 256),
+        isPng: true,
+        maxZoom: 18,
+        name: "GMC",
+        alt: "Google Map Chart"
+      });
+      
       map = new google.maps.Map(this.$el.find('#map')[0], map_options);
+      map.mapTypes.set('gmc', mapChartLayer);
+      map.setMapTypeId('gmc');
+      
+      
 
       var customZoomControl = new CustomZoomControl(map);
       customZoomControl.index = 1;
