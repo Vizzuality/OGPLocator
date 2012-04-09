@@ -1,7 +1,3 @@
-var CartoDB = Backbone.CartoDB({
-  user: 'ogp'
-});
-
 var CaseStudies = CartoDB.CartoDBCollection.extend({
   valid_filters: {
     'country'   : 'country_id',

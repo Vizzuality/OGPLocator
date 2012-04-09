@@ -56,7 +56,9 @@ window.IndexView = Backbone.View.extend({
   toggleFilter: function(evt){
     evt.preventDefault();
     evt.stopPropagation();
-    var filters_div = this.$(evt.target).next('div.filters');
+    var filters_div = this.$(evt.currentTarget).next('div.filters');
+
+    console.log(filters_div);
     this.$('div.filters').not(filters_div).removeClass('show');
 
     if (filters_div.hasClass('show')){

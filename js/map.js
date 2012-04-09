@@ -1,13 +1,49 @@
 var map_options = {
   zoom: 3,
   center: new google.maps.LatLng(34.397, 0),
-  mapTypeId: google.maps.MapTypeId.TERRAIN,
+  mapTypeId: google.maps.MapTypeId.ROADMAP,
   panControl: false,
   mapTypeControl: false,
   scaleControl: false,
   streetViewControl: false,
   overviewMapControl: false,
-  zoomControl: false
+  zoomControl: false,
+  styles: [
+   {
+     featureType: "administrative",
+     stylers: [
+       { visibility: "off" }
+     ]
+   },{
+     featureType: "water",
+     elementType: "labels",
+     stylers: [
+       { visibility: "off" }
+     ]
+   },{
+     featureType: "poi",
+     stylers: [
+       { visibility: "off" }
+     ]
+   },{
+     featureType: "water",
+     stylers: [
+       { hue: "#00b2ff" },
+       { lightness: 30 },
+       { saturation: 31 },
+       { gamma: 0.96 }
+     ]
+   },{
+     featureType: "landscape",
+     stylers: [
+       { saturation: 56 },
+       { lightness: -5 },
+       { gamma: 0.86 },
+       { hue: "#00b2ff" }
+     ]
+   },{
+   }
+  ]
 };
 
 var mini_map_options = {
@@ -42,6 +78,5 @@ function CustomZoomControl(map){
     map.setZoom(map.getZoom() - 1);
   });
 
-  console.log(controlDiv);
   return controlDiv;
 }
