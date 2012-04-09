@@ -124,6 +124,36 @@ h6 {
     border: 1px solid rgba(0, 0, 0, 0.15)
   }
 
+    #openbudget #map .custom-zoom div{
+      width: 44px;
+      height: 38px;
+      background-repeat: no-repeat;
+    }
+
+      #openbudget #map .custom-zoom .in{
+        background-image: url('/OGPLocator/img/zoom_plus.png')
+      }
+
+      #openbudget #map .custom-zoom .in:hover{
+        background-image: url('/OGPLocator/img/zoom_plus_hover.png')
+      }
+
+      #openbudget #map .custom-zoom .in:active{
+        background-image: url('/OGPLocator/img/zoom_plus_pushed.png')
+      }
+
+      #openbudget #map .custom-zoom .out{
+        background-image: url('/OGPLocator/img/zoom_minus.png')
+      }
+
+      #openbudget #map .custom-zoom .out:hover{
+        background-image: url('/OGPLocator/img/zoom_minus_hover.png')
+      }
+
+      #openbudget #map .custom-zoom .out:active{
+        background-image: url('/OGPLocator/img/zoom_minus_pushed.png')
+      }
+
   #openbudget .two_columns{
 
   }

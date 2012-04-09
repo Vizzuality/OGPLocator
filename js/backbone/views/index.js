@@ -18,6 +18,10 @@ window.IndexView = Backbone.View.extend({
   initMap: function(){
     if (!this.map){
       map = new google.maps.Map(this.$el.find('#map')[0], map_options);
+
+      var customZoomControl = new CustomZoomControl(map);
+      customZoomControl.index = 1;
+      map.controls[google.maps.ControlPosition.TOP_RIGHT].push(customZoomControl);
     }
   },
 
