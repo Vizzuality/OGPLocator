@@ -42,7 +42,11 @@ var map_options = {
        { hue: "#00b2ff" }
      ]
    },{
-   }
+    featureType: "road",
+    stylers: [
+      { visibility: "off" }
+    ]
+  }
   ]
 };
 

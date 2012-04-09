@@ -1,6 +1,6 @@
 body{
   background-image: url('/OGPLocator/img/background.png');
-  font-family: "Gill Sans", Geneva, Tahoma, Arial, sans-serif;
+  font-family: Geneva, Tahoma, Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -12,10 +12,12 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   font-size: 45px;
   text-transform: none;
+  font-family: "Gill Sans", Geneva, Tahoma, Arial, sans-serif;
 }
 
 h2 {
   font-size: 32px;
+  font-family: "Gill Sans", Geneva, Tahoma, Arial, sans-serif;
 }
 
 h3 {
@@ -24,6 +26,7 @@ h3 {
 
 h4 {
   font-size: 18px;
+  font-family: "Gill Sans", Geneva, Tahoma, Arial, sans-serif;
 }
 
 h6 {
@@ -41,6 +44,10 @@ h6 {
   cursor: pointer;
 }
 
+#openbudget a.filter{
+	  font-family: "Gill Sans", Geneva, Tahoma, Arial, sans-serif;	
+}
+
 #openbudget {
   width: 960px;
   margin: 0 auto;
@@ -56,7 +63,7 @@ h6 {
   }
 
   #openbudget header nav{
-    width: 63%;
+    width: 62%;
     vertical-align: middle;
     text-align: right;
   }
@@ -112,6 +119,7 @@ h6 {
           margin: 0;
           padding: 0;
           color: #FA5200;
+  				font-family: "Gill Sans", Geneva, Tahoma, Arial, sans-serif;
           font-size: 13px;
           font-weight: normal;
         }
@@ -131,7 +139,8 @@ h6 {
     }
 
       #openbudget #map .custom-zoom .in{
-        background-image: url('/OGPLocator/img/zoom_plus.png')
+        background-image: url('/OGPLocator/img/zoom_plus.png');
+				margin: 15px 15px 0 0;
       }
 
       #openbudget #map .custom-zoom .in:hover{
@@ -171,7 +180,7 @@ h6 {
 
     #openbudget .two_columns .left .container {
       width: 566px;
-      padding: 32px;
+      padding: 32px 32px 0 32px;
       margin-bottom: 30px;
       background-color: white;
       border: 1px solid #CCCCCC;
@@ -230,6 +239,7 @@ h6 {
           margin: 3px 0;
           line-height: 13px;
           color: #EB4600;
+  				font-family: "Gill Sans", Geneva, Tahoma, Arial, sans-serif;	
           text-transform: none;
         }
 
@@ -247,8 +257,8 @@ h6 {
         }
 
     #openbudget .two_columns .right {
-      width: 259px;
-      padding: 0 32px;
+      width: 280px;
+      padding: 30px 0 0 32px;
     }
 
       #openbudget .two_columns .right div {
@@ -265,8 +275,9 @@ h6 {
         }
 
         #openbudget .two_columns .right div p {
-          margin: 0 0 26px;
+          margin: 0 0 15px 0;
           font-size: 13px;
+					line-height: 18px;
           color: #8A9298;
         }
 
