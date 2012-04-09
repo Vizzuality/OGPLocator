@@ -58,8 +58,9 @@ InfoWindow.prototype.setPosition = function() {
     if (pixPosition) {
       div.style.width = this.width_ + 'px';
       div.style.left = (pixPosition.x - 122) + 'px';
-      var actual_height = - $(div).find('.box').height();
-      div.style.top = (pixPosition.y + actual_height - 80) + 'px';
+      var actual_height = - $(div).outerHeight();
+      div.style.top = (pixPosition.y + actual_height - 15) + 'px';
+      console.log(div.style.top);
     }
     this.show();
   }
