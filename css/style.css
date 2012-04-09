@@ -22,6 +22,7 @@ h2 {
 
 h3 {
   font-size: 21px;
+  font-family: "Gill Sans", Geneva, Tahoma, Arial, sans-serif;
 }
 
 h4 {
@@ -31,6 +32,7 @@ h4 {
 
 h6 {
   font-size: 13px;
+  font-family: "Gill Sans", Geneva, Tahoma, Arial, sans-serif;
 }
 
 #openbudget a {
@@ -256,19 +258,20 @@ h6 {
           content: '\00a0\00b7\00a0';
         }
 
-    #openbudget .two_columns .right {
-      width: 280px;
-      padding: 30px 0 0 32px;
-    }
+    		#openbudget .two_columns .right {
+      		width: 280px;
+      		padding: 30px 0 0 32px;
+    		}
 
-      #openbudget .two_columns .right div {
-        margin-bottom: 32px;
-        border-bottom: 1px solid rgba(0, 102, 153, 0.10);
-      }
+      	#openbudget .two_columns .right div {
+	        padding-bottom: 12px;
+        	margin-bottom: 22px;
+        	border-bottom: 1px solid rgba(0, 102, 153, 0.10);
+      	}
 
-      #openbudget .two_columns .right div.last {
-        border-bottom: 0 none;
-      }
+      	#openbudget .two_columns .right div.last {
+        	border-bottom: 0 none;
+      	}
 
         #openbudget .two_columns .right div h4 {
           margin: 0;
@@ -300,6 +303,7 @@ h6 {
   background: url('/OGPLocator/img/arrow_left.png') no-repeat center left;
   font-size: 15px;
   color: black;
+  font-family: "Gill Sans", Geneva, Tahoma, Arial, sans-serif;
   text-transform: uppercase;
   text-decoration: none;
 }
@@ -336,8 +340,12 @@ h6 {
     border: 1px solid rgba(0, 0, 0, 0.15)
   }
 
+  #openbudget #case_detail .sidebar {
+  	padding: 0 0 0 32px;
+	}
+
   #openbudget #case_detail .sidebar li {
-    margin: 20px 0;
+    margin: 10px 0;
   }
 
   #openbudget #case_detail .sidebar h6 {
