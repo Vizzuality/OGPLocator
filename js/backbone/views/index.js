@@ -22,6 +22,11 @@ window.IndexView = Backbone.View.extend({
       var customZoomControl = new CustomZoomControl(map);
       customZoomControl.index = 1;
       map.controls[google.maps.ControlPosition.TOP_RIGHT].push(customZoomControl);
+
+      _.each(Cases.models, function(case_study){
+        var country = CountriesWithGeom.getByCartoDBId(case_study.get('country_id'));
+        addMarker($.parseJSON(country.get('latlon')));
+      });
     }
   },
 
