@@ -15,16 +15,6 @@ window.IndexView = Backbone.View.extend({
     $(document).click(this.hideFilters);
   },
 
-  initMap: function(){
-    if (!this.map){
-      map = new google.maps.Map(this.$el.find('#map')[0], map_options);
-
-      var customZoomControl = new CustomZoomControl(map);
-      customZoomControl.index = 1;
-      map.controls[google.maps.ControlPosition.TOP_RIGHT].push(customZoomControl);
-    }
-  },
-
   render: function(){
     this.template = ich.index({number_of_cases: Cases.length});
 
@@ -34,17 +24,38 @@ window.IndexView = Backbone.View.extend({
 
     this.$el.html(this.template);
 
-    this._renderCountriesList();
+    this._renderFiltersLists();
 
     this.initMap();
 
     return this;
   },
 
-  _renderCountriesList: function(){
+  initMap: function(){
+    if (!this.map){
+      map = new google.maps.Map(this.$el.find('#map')[0], map_options);
+
+      var customZoomControl = new CustomZoomControl(map);
+      customZoomControl.index = 1;
+      map.controls[google.maps.ControlPosition.TOP_RIGHT].push(customZoomControl);
+
+      _.each(Cases.models, function(case_study){
+        var country = CountriesWithGeom.getByCartoDBId(case_study.get('country_id'));
+        addMarker($.parseJSON(country.get('latlon')));
+      });
+    }
+  },
+
+
+  _renderFiltersLists: function(){
     var countries_list = $('.filters.countries ul');
     _.each(Countries.models, function(country){
-      countries_list.append(ich.countries_list_item({url: 'countries/' + country.get('cartodb_id'), name: country.get('name')}));
+      countries_list.append(ich.filter_list_item({url: 'country/' + country.get('cartodb_id'), name: country.get('name')}));
+    });
+
+    var challenges_list = $('.filters.challenges ul');
+    _.each(Challenges.models, function(challenge){
+      challenges_list.append(ich.filter_list_item({url: 'challenge/' + challenge.get('cartodb_id'), name: challenge.get('name')}));
     });
   },
 

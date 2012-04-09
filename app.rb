@@ -46,6 +46,10 @@ get '/OGPLocator/js/backbone/:file' do
   File.read(File.join('js', 'backbone', params[:file]))
 end
 
+get '/OGPLocator/js/backbone/models/:file' do
+  File.read(File.join('js', 'backbone/models', params[:file]))
+end
+
 get '/OGPLocator/js/backbone/collections/:file' do
   File.read(File.join('js', 'backbone/collections', params[:file]))
 end

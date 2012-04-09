@@ -84,3 +84,15 @@ function CustomZoomControl(map){
 
   return controlDiv;
 }
+
+function addMarker(latlon){
+  latlon = latlon.coordinates;
+
+  new google.maps.Marker({
+    position: new google.maps.LatLng(latlon[1], latlon[0]),
+    map: map,
+    title: 'My workplace',
+    clickable: true,
+    icon: '/OGPLocator/img/marker_single_unselected.png'
+  });
+}

@@ -38,10 +38,6 @@
             <div class="filters">
               <img src="/OGPLocator/img/menu_top.png" alt="" class="border_top" />
               <ul>
-              	<li><a href="sector/1">Sector 1</a></li>
-              	<li><a href="sector/2">Sector 2</a></li>
-              	<li><a href="sector/3">Sector 3</a></li>
-              	<li><a href="sector/4">Sector 4</a></li>
               </ul>
               <img src="/OGPLocator/img/menu_bottom.png" alt="" class="border_bottom" />
             </div>
@@ -51,23 +47,15 @@
             <div class="filters">
               <img src="/OGPLocator/img/menu_top.png" alt="" class="border_top" />
               <ul>
-              	<li><a href="category/1">Categories 1</a></li>
-              	<li><a href="category/2">Categories 2</a></li>
-              	<li><a href="category/3">Categories 3</a></li>
-              	<li><a href="category/4">Categories 4</a></li>
               </ul>
               <img src="/OGPLocator/img/menu_bottom.png" alt="" class="border_bottom" />
             </div>
           </li>
           <li class="menu">
-            <a class="filter">challenges</span>
-            <div class="filters">
+            <a class="filter">challenges</a>
+            <div class="filters challenges">
               <img src="/OGPLocator/img/menu_top.png" alt="" class="border_top" />
               <ul>
-              	<li><a href="challenge/1">Challenge 1</a></li>
-              	<li><a href="challenge/2">Challenge 2</a></li>
-              	<li><a href="challenge/3">Challenge 3</a></li>
-              	<li><a href="challenge/4">Challenge 4</a></li>
               </ul>
               <img src="/OGPLocator/img/menu_bottom.png" alt="" class="border_bottom" />
             </div>
@@ -125,7 +113,7 @@
     </li>
   </script>
 
-  <script id="countries_list_item" type="text/html">
+  <script id="filter_list_item" type="text/html">
     <li><a href="{{url}}">{{name}}</a></li>
   </script>
 
@@ -281,7 +269,9 @@
 
 <script src="/OGPLocator/js/backbone/cartodb.js" type="text/javascript"></script>
 <script src="/OGPLocator/js/backbone/routers/main_router.js" type="text/javascript"></script>
+<script src="/OGPLocator/js/backbone/models/case_study.js" type="text/javascript"></script>
 <script src="/OGPLocator/js/backbone/collections/countries.js" type="text/javascript"></script>
+<script src="/OGPLocator/js/backbone/collections/challenges.js" type="text/javascript"></script>
 <script src="/OGPLocator/js/backbone/collections/case_studies.js" type="text/javascript"></script>
 <script src="/OGPLocator/js/backbone/views/index.js" type="text/javascript"></script>
 <script src="/OGPLocator/js/backbone/views/detail.js" type="text/javascript"></script>
