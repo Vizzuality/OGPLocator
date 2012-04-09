@@ -44,5 +44,10 @@ var CaseStudies = CartoDB.CartoDBCollection.extend({
       this.where_ = filter + " = " + id;
     }
     this.fetch();
+  },
+
+  textFilter: function(text){
+
   }
+
 });

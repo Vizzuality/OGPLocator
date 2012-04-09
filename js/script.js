@@ -6,8 +6,6 @@ var Challenges        = new ChallengesCollection();
 var Topics            = new TopicsCollection();
 var Categories        = new CategoriesCollection();
 var Case              = null;
-var map               = null;
-var mini_map          = null;
 
 $(function(){
 

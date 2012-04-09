@@ -45,14 +45,14 @@ window.DetailView = Backbone.View.extend({
 
   initMap: function(){
     if (!this.map){
-      map = new google.maps.Map(this.$el.find('#mini_map')[0]);
+      this.map = new google.maps.Map(this.$el.find('#mini_map')[0]);
     }
     var the_geom = Case.get('the_geom');
     if (the_geom && the_geom.coordinates){
       mini_map_options['center'] = new google.maps.LatLng(the_geom.coordinates[1], the_geom.coordinates[0]);
     }
-    map.setOptions(mini_map_options);
+    this.map.setOptions(mini_map_options);
 
-    setPolygon(Case.getPolygon());
+    setPolygon(this.map, Case.getPolygon());
   }
 });
