@@ -24,8 +24,6 @@ window.DetailView = Backbone.View.extend({
 
     this.$el.html(this.template);
 
-    this.initMap();
-
     $(document).scrollTop(0);
 
     return this;
@@ -35,13 +33,5 @@ window.DetailView = Backbone.View.extend({
     evt.preventDefault();
 
     this.router.navigate('', true)
-  },
-
-  initMap: function(){
-    if (!this.map){
-      this.map = new google.maps.Map(this.$el.find('#mini_map')[0], mini_map_options);
-    }
-
-    setPolygon(this.map, Case.getPolygon());
   }
 });

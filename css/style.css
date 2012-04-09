@@ -346,6 +346,7 @@ h6 {
   #openbudget #case_detail #mini_map{
     width: 298px;
     height: 348px;
+    padding: 0;
     border: 1px solid rgba(0, 0, 0, 0.15)
   }
 
