@@ -26,6 +26,8 @@ window.DetailView = Backbone.View.extend({
 
     this.initMap();
 
+    $(document).scrollTop(0);
+
     return this;
   },
 
