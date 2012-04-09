@@ -53,7 +53,7 @@ var CaseStudies = CartoDB.CartoDBCollection.extend({
 
     this.models = _.filter(this.models, function(model){
       return _.find(_.values(model.attributes), function(model_value){
-        return !_.isNull(model_value) && (model_value).toString().toLowerCase().indexOf(text) > 0;
+        return !_.isNull(model_value) && (model_value).toString().toLowerCase().indexOf(text.toLowerCase()) > 0;
       });
     });
     this.reset(this.models);
