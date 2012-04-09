@@ -24,7 +24,6 @@ var CaseStudies = CartoDB.CartoDBCollection.extend({
     "resources_document"     : "resources_document",
     "resources_links"        : "resources_links",
     "resources_media"        : "resources_media",
-    "sector"                 : "sector",
     "subtitle"               : "subtitle",
     "tags"                   : "tags",
     "title"                  : "title",

@@ -1,9 +1,8 @@
 var CountriesCollection = CartoDB.CartoDBCollection.extend({
-  table: 'ogp_countries',
-
-  columns: {
-    "cartodb_id" : "cartodb_id",
-    "the_geom"   : "the_geom",
-    "name"       : "admin"
+  sql: function(){
+    return ' \
+      SELECT c.cartodb_id, c.admin as name \
+      FROM ogp_countries c \
+      INNER JOIN case_studies cs ON cs.country_id = c.cartodb_id';
   }
 });

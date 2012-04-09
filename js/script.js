@@ -6,14 +6,8 @@ var map       = null;
 var mini_map  = null;
 
 $(function(){
-  Countries.fetch({
-    success: function(){
-      var countries_list = $('.filters.countries').find('ul');
-      _.each(Countries.models, function(country){
-        countries_list.append(ich.countries_list_item({url: 'countries/' + country.get('cartodb_id'), name: country.get('name')}));
-      });
-    }
-  });
+
+  Countries.fetch();
 
   Cases.fetch({
     success: function(){

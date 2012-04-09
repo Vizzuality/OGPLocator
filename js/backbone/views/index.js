@@ -34,9 +34,18 @@ window.IndexView = Backbone.View.extend({
 
     this.$el.html(this.template);
 
+    this._renderCountriesList();
+
     this.initMap();
 
     return this;
+  },
+
+  _renderCountriesList: function(){
+    var countries_list = $('.filters.countries ul');
+    _.each(Countries.models, function(country){
+      countries_list.append(ich.countries_list_item({url: 'countries/' + country.get('cartodb_id'), name: country.get('name')}));
+    });
   },
 
   navigateToFilter: function(evt){
@@ -58,7 +67,6 @@ window.IndexView = Backbone.View.extend({
     evt.stopPropagation();
     var filters_div = this.$(evt.currentTarget).next('div.filters');
 
-    console.log(filters_div);
     this.$('div.filters').not(filters_div).removeClass('show');
 
     if (filters_div.hasClass('show')){
