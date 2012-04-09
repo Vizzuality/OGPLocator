@@ -1,7 +1,7 @@
 var MainRouter = Backbone.Router.extend({
 
   initialize: function(){
-    Backbone.history.start({pushState: true, root: '/OGPLocator/'});
+    Backbone.history.start({pushState: false, root: '/OGPLocator/'});
   },
 
   routes: {
