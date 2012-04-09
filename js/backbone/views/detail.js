@@ -45,13 +45,8 @@ window.DetailView = Backbone.View.extend({
 
   initMap: function(){
     if (!this.map){
-      this.map = new google.maps.Map(this.$el.find('#mini_map')[0]);
+      this.map = new google.maps.Map(this.$el.find('#mini_map')[0], mini_map_options);
     }
-    var the_geom = Case.get('the_geom');
-    if (the_geom && the_geom.coordinates){
-      mini_map_options['center'] = new google.maps.LatLng(the_geom.coordinates[1], the_geom.coordinates[0]);
-    }
-    this.map.setOptions(mini_map_options);
 
     setPolygon(this.map, Case.getPolygon());
   }
