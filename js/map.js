@@ -93,6 +93,6 @@ function addMarker(latlon){
     map: map,
     title: 'My workplace',
     clickable: true,
-    icon: '/OGPLocator/img/marker_single_unselected.png'
+    icon: '/OGPLocator/img/marker_single_selected.png'
   });
 }
