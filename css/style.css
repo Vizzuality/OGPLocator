@@ -367,6 +367,7 @@ a:hover {text-decoration:underline; color:#C93B00;}
 
     #openbudget #case_detail .container div p {
       font-size: 15px;
+			line-height: 22px;
     }
 
     #openbudget #case_detail #experiencies {
