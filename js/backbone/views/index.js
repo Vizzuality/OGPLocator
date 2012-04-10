@@ -5,13 +5,13 @@ window.IndexView = Backbone.View.extend({
   markers: [],
 
   events: {
-    'click .search ul li a':                              'showDetail',
-    'click .infowindow h3 a':                             'showDetail',
-    'click div#openbudget header li.menu a.filter':       'toggleFilter',
-    'click div#openbudget header li.menu':                'stopPropagation',
-    'click div#openbudget header div.filters ul li a':    'navigateToFilter',
-    'keyup div#results div.search form input.search_box': 'filterByText',
-    'click div#results div.summary .clear a':             'reloadIndex'
+    'click div#openbudget div#results div.search ul li h3 a': 'showDetail',
+    'click div#map .infowindow h3 a':                         'showDetail',
+    'click div#openbudget header li.menu a.filter':           'toggleFilter',
+    'click div#openbudget header li.menu':                    'stopPropagation',
+    'click div#openbudget header div.filters ul li a':        'navigateToFilter',
+    'keyup div#results div.search form input.search_box':     'filterByText',
+    'click div#results div.summary .clear a':                 'reloadIndex'
   },
 
   initialize: function(){
@@ -27,7 +27,6 @@ window.IndexView = Backbone.View.extend({
     this.$el.html(this.template);
 
     this._focusSearchForm();
-    this._updateSummary();
     this._renderList();
     this._renderFiltersLists();
 
@@ -37,7 +36,7 @@ window.IndexView = Backbone.View.extend({
   _renderList: function(cases){
     this._initMap();
 
-    this.$el.find('.summary').html(ich.index_summary({number_of_cases: (cases || Cases.models).length}));
+    this._updateSummary((cases || Cases.models).length)
     this.$el.find('#results .search ul').empty();
 
     setMapPolygons(this.map, cases || Cases.models);
@@ -107,7 +106,7 @@ window.IndexView = Backbone.View.extend({
 
     Cases.filterBy(filter, id, function(cases){
       self._renderList(cases);
-      self._updateSummary($(".filters a." + filter + "_" + id).text());
+      self.currentFilter = $(".filters a." + filter + "_" + id).text();
     });
   },
 
@@ -118,10 +117,7 @@ window.IndexView = Backbone.View.extend({
 
   filterByText: function(evt){
     var self = this;
-    var textbox = $(evt.currentTarget);
-    this.currentTextFilter = textbox.val();
-
-    this.$el.find('.summary .in').text(' in ' + this.currentTextFilter).addClass('show');
+    this.currentTextFilter = $(evt.currentTarget).val();
 
     Cases.textFilter(this.currentTextFilter, function(cases){
       self._renderList(cases);
@@ -130,11 +126,10 @@ window.IndexView = Backbone.View.extend({
 
   reloadIndex: function(evt){
     evt.preventDefault();
-    this.currentFilter = null;
+    this.$el.find('div#results div.search form input.search_box').val('');
     this.currentTextFilter = null;
-    this.router.navigate('');
-    Cases.where_ = null;
-    Cases.fetch();
+    this.currentFilter = null;
+    this._renderList();
   },
 
   toggleFilter: function(evt){
@@ -167,12 +162,13 @@ window.IndexView = Backbone.View.extend({
     }
   },
 
-  _updateSummary: function(text){
+  _updateSummary: function(cases_number, text){
     text = text || this.currentFilter || this.currentTextFilter;
+
+    this.$el.find('.summary').html(ich.index_summary({number_of_cases: cases_number}));
     if (!text || text === ''){
       this.$el.find('div#results div.search div.summary span.in').empty().removeClass('show');
       this.$el.find('div#results div.search div.summary .clear').removeClass('show');
-      return;
     }else{
       this.$el.find('div#results div.search div.summary span.in').html(' in ' + text).addClass('show');
       this.$el.find('div#results div.search div.summary .clear').addClass('show');

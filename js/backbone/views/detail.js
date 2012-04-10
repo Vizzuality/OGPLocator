@@ -9,8 +9,8 @@ window.DetailView = Backbone.View.extend({
   },
 
   events: {
-    'click #back'                       : 'showIndex',
-    'click div#experiencies ul li h3 a' : 'showDetail'
+    'click #back'                      : 'showIndex',
+    'click div#experiencies ul li h3 a': 'showDetail'
   },
 
   render: function(){
