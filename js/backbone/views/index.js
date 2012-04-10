@@ -11,6 +11,7 @@ window.IndexView = Backbone.View.extend({
     'click div#openbudget header li.menu':                    'stopPropagation',
     'click div#openbudget header div.filters ul li a':        'navigateToFilter',
     'keyup div#results div.search form input.search_box':     'filterByText',
+    'submit form':                                            'disableForms',
     'click div#results div.summary .clear a':                 'reloadIndex'
   },
 
@@ -116,12 +117,24 @@ window.IndexView = Backbone.View.extend({
   },
 
   filterByText: function(evt){
+    if (evt.keyCode == 13){
+      evt.preventDefault();
+      evt.stopPropagation();
+      return false;
+    }
+
     var self = this;
     this.currentTextFilter = $(evt.currentTarget).val();
 
     Cases.textFilter(this.currentTextFilter, function(cases){
       self._renderList(cases);
     });
+  },
+
+  disableForms: function(evt){
+    evt.preventDefault();
+    evt.stopPropagation();
+    return false;
   },
 
   reloadIndex: function(evt){
