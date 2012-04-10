@@ -376,16 +376,17 @@ a:hover {text-decoration:underline; color:#C93B00;}
       }
 
       #openbudget #case_detail #experiencies ul {
-        padding: 0;
+        padding: 0 0 5px 0;
         list-style-type: none;
       }
 
         #openbudget #case_detail #experiencies ul li {
-          margin: 10px 0;
+          margin: 15px 0;
         }
 
           #openbudget #case_detail #experiencies ul li h3 {
             margin: 0;
+						line-height: 18px;
           }
 
             #openbudget #case_detail #experiencies ul li h3 a {
@@ -394,8 +395,8 @@ a:hover {text-decoration:underline; color:#C93B00;}
             }
 
           #openbudget #case_detail #experiencies ul li span {
-            color: #cccccc;
-            font-size: 15px;
+            color: #333333;
+            font-size: 13px;
           }
 
   #openbudget #case_detail #mini_map{
