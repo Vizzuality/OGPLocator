@@ -105,8 +105,8 @@ window.IndexView = Backbone.View.extend({
     var self = this;
 
     Cases.filterBy(filter, id, function(cases){
-      self._renderList(cases);
       self.currentFilter = $(".filters a." + filter + "_" + id).text();
+      self._renderList(cases);
     });
   },
 
@@ -162,15 +162,21 @@ window.IndexView = Backbone.View.extend({
     }
   },
 
-  _updateSummary: function(cases_number, text){
-    text = text || this.currentFilter || this.currentTextFilter;
+  _updateSummary: function(cases_number){
+    var text = this.currentFilter + this.currentTextFilter;
 
     this.$el.find('.summary').html(ich.index_summary({number_of_cases: cases_number}));
-    if (!text || text === ''){
+    if (!text || $.trim(text) === ''){
       this.$el.find('div#results div.search div.summary span.in').empty().removeClass('show');
+      this.$el.find('div#results div.search div.summary span.for').empty().removeClass('show');
       this.$el.find('div#results div.search div.summary .clear').removeClass('show');
     }else{
-      this.$el.find('div#results div.search div.summary span.in').html(' in ' + text).addClass('show');
+      if (this.currentFilter) {
+        this.$el.find('div#results div.search div.summary span.in').html(' in ' + this.currentFilter).addClass('show');
+      }
+      if (this.currentTextFilter) {
+        this.$el.find('div#results div.search div.summary span.in').html(' for ' + this.currentTextFilter).addClass('show');
+      }
       this.$el.find('div#results div.search div.summary .clear').addClass('show');
     }
   }
