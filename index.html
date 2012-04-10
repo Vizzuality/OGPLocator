@@ -116,6 +116,9 @@
     <li>
       <h3><a href="detail/{{cartodb_id}}">{{title}}</a></h3>
       <a href="detail/{{cartodb_id}}" class="desc">{{subtitle}}</a>
+      {{#subtitle_country}}
+      <span>&middot;</span>
+      {{/subtitle_country}}
       <a href="detail/{{cartodb_id}}" class="where">Open Budget in {{country}}</a>
     </li>
   </script>
@@ -269,6 +272,10 @@
     <li>
       <h3><a href="detail/{{cartodb_id}}">{{title}}</a></h3>
       <span>{{subtitle}}</span>
+      {{#subtitle_country}}
+      <span>&middot;</span>
+      {{/subtitle_country}}
+      <span>Open Budget in {{country}}</span>
     </li>
   </script>
 
