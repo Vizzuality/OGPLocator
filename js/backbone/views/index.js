@@ -163,9 +163,10 @@ window.IndexView = Backbone.View.extend({
   },
 
   _updateSummary: function(cases_number){
-    var text = this.currentFilter + this.currentTextFilter;
+    var text = [this.currentFilter, this.currentTextFilter].join('');
 
     this.$el.find('.summary').html(ich.index_summary({number_of_cases: cases_number}));
+
     if (!text || $.trim(text) === ''){
       this.$el.find('div#results div.search div.summary span.in').empty().removeClass('show');
       this.$el.find('div#results div.search div.summary span.for').empty().removeClass('show');
