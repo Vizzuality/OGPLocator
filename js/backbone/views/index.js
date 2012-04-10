@@ -10,7 +10,8 @@ window.IndexView = Backbone.View.extend({
     'click div#openbudget header li.menu a.filter':       'toggleFilter',
     'click div#openbudget header li.menu':                'stopPropagation',
     'click div#openbudget header div.filters ul li a':    'navigateToFilter',
-    'keyup div#results div.search form input.search_box': 'filterByText'
+    'keyup div#results div.search form input.search_box': 'filterByText',
+    'click div#results div.summary .clear a':              'reloadIndex'
   },
 
   initialize: function(){
@@ -68,6 +69,8 @@ window.IndexView = Backbone.View.extend({
   },
 
   _renderFiltersLists: function(){
+    this.$el.find('.filters ul').empty();
+
     var countries_list = $('.filters.countries ul');
     _.each(Countries.models, function(country){
       countries_list.append(ich.filter_list_item({url: 'country/' + country.get('cartodb_id'), name: country.get('name')}));
@@ -97,7 +100,10 @@ window.IndexView = Backbone.View.extend({
   },
 
   filterBy: function(filter, id){
-    Cases.filterBy(filter, id);
+    var self = this;
+    Cases.filterBy(filter, id, function(){
+      self._updateSummary();
+    });
   },
 
   showDetail: function(evt){
@@ -117,10 +123,21 @@ window.IndexView = Backbone.View.extend({
     });
   },
 
+  reloadIndex: function(evt){
+    evt.preventDefault();
+    this.currentFilter = null;
+    this.currentTextFilter = null;
+    this.router.navigate('');
+    Cases.where_ = null;
+    Cases.fetch();
+  },
+
   toggleFilter: function(evt){
     evt.preventDefault();
     evt.stopPropagation();
-    var filters_div = this.$(evt.currentTarget).next('div.filters');
+    var link = this.$(evt.currentTarget);
+    this.currentFilter = link.text();
+    var filters_div = link.next('div.filters');
 
     this.$('div.filters').not(filters_div).removeClass('show');
 
@@ -145,10 +162,16 @@ window.IndexView = Backbone.View.extend({
     }
   },
 
-  _updateSummary: function(){
-    var text = this.currentFilter || this.currentTextFilter;
-
-    this.$el.find('div#results div.search div.summary span.in').html(' in ' + text).addClass('show');
+  _updateSummary: function(filter){
+    var text = filter || this.currentFilter || this.currentTextFilter;
+    if (!text || text === ''){
+      this.$el.find('div#results div.search div.summary span.in').empty().removeClass('show');
+      this.$el.find('div#results div.search div.summary .clear').removeClass('show');
+      return;
+    }else{
+      this.$el.find('div#results div.search div.summary span.in').html(' in ' + text).addClass('show');
+      this.$el.find('div#results div.search div.summary .clear').addClass('show');
+    }
   }
 
 
