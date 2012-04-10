@@ -1,5 +1,7 @@
 var MainRouter = Backbone.Router.extend({
 
+  last_visited_index: null,
+
   initialize: function(){
     Backbone.history.start({pushState: false, root: '/OGPLocator/'});
   },
@@ -11,15 +13,21 @@ var MainRouter = Backbone.Router.extend({
   },
 
   index: function(){
+    this.last_visited_index = '';
     this.index_view().render();
+  },
+
+  filter: function(filter, id){
+    this.last_visited_index = filter + '/' + id;
+    this.index_view().render().filterBy(filter, id).render();
   },
 
   detail: function(id){
     this.detail_view(id).render();
   },
 
-  filter: function(filter, id){
-    this.index_view().render().filterBy(filter, id);
+  last_index: function(){
+    this.navigate(this.last_visited_index, true);
   },
 
   index_view: function(){

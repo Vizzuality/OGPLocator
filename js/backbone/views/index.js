@@ -27,9 +27,13 @@ window.IndexView = Backbone.View.extend({
   render: function(){
     this.$el.html(this.template);
 
-    this._focusSearchForm();
-    this._renderList();
     this._renderFiltersLists();
+
+    if (this.currentTextFilter){
+      this._focusSearchForm();
+    }else{
+      this._renderList();
+    }
 
     return this;
   },
@@ -114,17 +118,19 @@ window.IndexView = Backbone.View.extend({
     Cases.filterBy(filter, id, function(cases){
       self._renderList(cases);
     });
+
+    return this;
   },
 
   filterByText: function(evt){
-    if (evt.keyCode == 13){
+    if (evt && evt.keyCode == 13){
       evt.preventDefault();
       evt.stopPropagation();
       return false;
     }
 
     var self = this;
-    this.currentTextFilter = $(evt.currentTarget).val();
+    this.currentTextFilter = this.$el.find('div#results div.search form input.search_box').val();
 
     Cases.textFilter(this.currentTextFilter, function(cases){
       self._renderList(cases);
@@ -142,7 +148,8 @@ window.IndexView = Backbone.View.extend({
     this.$el.find('div#results div.search form input.search_box').val('');
     this.currentTextFilter = null;
     this.currentFilter = null;
-    this._renderList();
+    this.router.navigate('', true);
+    //this._renderList();
   },
 
   toggleFilter: function(evt){
@@ -170,9 +177,8 @@ window.IndexView = Backbone.View.extend({
   },
 
   _focusSearchForm: function(){
-    if (this.currentTextFilter){
-      this.$el.find('div#results div.search form input.search_box').val(this.currentTextFilter).focus();
-    }
+    this.$el.find('div#results div.search form input.search_box').val(this.currentTextFilter).focus();
+    this.filterByText();
   },
 
   _updateSummary: function(cases_number){
