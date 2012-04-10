@@ -14,9 +14,19 @@ var CaseStudy = Backbone.Model.extend({
   },
 
   getRelated: function(callback){
+    var self = this;
     var related = new CaseStudies();
-    related.filterBy('category', this.get('category_id'), function(){
-      callback.call(this, _.first(related.models, 3));
-    });
+
+    related.fetch({success: function(){
+
+      related.filterBy('category', self.get('category_id'), function(cases){
+
+        callback.call(this, _.first(_.filter(cases, function(_case){
+          return _case.get('cartodb_id') != self.get('cartodb_id')
+        }), 3));
+
+      });
+
+    }})
   }
 });
