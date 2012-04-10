@@ -11,11 +11,11 @@ html { font-size: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 10
 html, button, input, select, textarea { font-family: sans-serif; color: #222; }
 body { margin: 0; font-size: 1em; line-height: 1.4; }
 
-::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
-::selection { background: #fe57a1; color: #fff; text-shadow: none; }
+::-moz-selection { background: transparent; color: #fff; text-shadow: none; }
+::selection { background: transparent; color: #fff; text-shadow: none; }
 
 a { color: #00e; }
-a:visited { color: #551a8b; }
+a:visited { color: transparent; }
 a:hover { color: #06e; }
 a:focus { outline: thin dotted; }
 a:hover, a:active { outline: 0; }
@@ -91,13 +91,13 @@ body{ font:16px/26px Helvetica, Helvetica Neue, Arial; }
 #header-container,
 #footer-container,
 #main aside{
-	background:#f16529;
+	background:transparent;
 }
 
 #title{ color:white; }
 
-::-moz-selection { background: #f16529; color: #fff; text-shadow: none; }
-::selection      { background: #f16529; color: #fff; text-shadow: none; }
+::-moz-selection { background: transparent; color: #fff; text-shadow: none; }
+::selection      { background: transparent; color: #fff; text-shadow: none; }
 
 /* ==============
     MOBILE: Menu
