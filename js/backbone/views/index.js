@@ -68,6 +68,8 @@ window.IndexView = Backbone.View.extend({
   },
 
   _renderFiltersLists: function(){
+    this.$el.find('.filters ul').empty();
+
     var countries_list = $('.filters.countries ul');
     _.each(Countries.models, function(country){
       countries_list.append(ich.filter_list_item({url: 'country/' + country.get('cartodb_id'), name: country.get('name')}));
@@ -97,7 +99,10 @@ window.IndexView = Backbone.View.extend({
   },
 
   filterBy: function(filter, id){
-    Cases.filterBy(filter, id);
+    var self = this;
+    Cases.filterBy(filter, id, function(){
+      self._updateSummary();
+    });
   },
 
   showDetail: function(evt){
@@ -120,7 +125,9 @@ window.IndexView = Backbone.View.extend({
   toggleFilter: function(evt){
     evt.preventDefault();
     evt.stopPropagation();
-    var filters_div = this.$(evt.currentTarget).next('div.filters');
+    var link = this.$(evt.currentTarget);
+    this.currentFilter = link.text();
+    var filters_div = link.next('div.filters');
 
     this.$('div.filters').not(filters_div).removeClass('show');
 
@@ -145,8 +152,11 @@ window.IndexView = Backbone.View.extend({
     }
   },
 
-  _updateSummary: function(){
-    var text = this.currentFilter || this.currentTextFilter;
+  _updateSummary: function(filter){
+    var text = filter || this.currentFilter || this.currentTextFilter;
+    if (!text || text === ''){
+      return;
+    }
 
     this.$el.find('div#results div.search div.summary span.in').html(' in ' + text).addClass('show');
   }
