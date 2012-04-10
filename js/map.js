@@ -47,6 +47,37 @@ function CustomZoomControl(map){
   return controlDiv;
 }
 
+function setMapPolygons(map, cases){
+  var mapChartLayer = new google.maps.ImageMapType({
+    getTileUrl: function(coord, zoom) {
+      var lULP = new google.maps.Point(coord.x*256,(coord.y+1)*256);
+      var lLRP = new google.maps.Point((coord.x+1)*256,coord.y*256);
+      var projectionMap = new MercatorProjection();
+      var lULg = projectionMap.fromDivPixelToLatLng(lULP, zoom);
+      var lLRg = projectionMap.fromDivPixelToLatLng(lLRP, zoom);
+      var countries = _.map(cases, function(model){
+        return model.toJSON().country_iso.toUpperCase();
+      }).join('|');
+      var data = _.map(cases, function(model){
+        return '1';
+      }).join(',');
+      var limits = "0,1";
+      var selected_color = "";
+      var baseUrl="http://chart.apis.google.com/chart?chs=256x256&chd=t:"+data+"&chco=D0EAF5,FFFFB2,FFFFFF&chld="+countries+"&chf=a,s,B6DDEE|bg,s,00000000&chds="+limits;
+      var bbox="&cht=map:fixed=" + lULg.lat() +","+ lULg.lng() + "," + lLRg.lat() + "," + lLRg.lng();
+      return baseUrl+bbox;
+    },
+    tileSize: new google.maps.Size(256, 256),
+    isPng: true,
+    maxZoom: 18,
+    name: "GMC",
+    alt: "Google Map Chart"
+  });
+
+  map.mapTypes.set('gmc', mapChartLayer);
+  map.setMapTypeId('gmc');
+}
+
 function addMarker(map, case_study){
   latlon = case_study.getLatLong().coordinates;
 
@@ -66,4 +97,6 @@ function addMarker(map, case_study){
   google.maps.event.addDomListener(map, 'click', function(evt) {
     infoWindow.hide();
   });
+
+  return marker;
 }

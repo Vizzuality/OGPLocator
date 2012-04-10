@@ -2,6 +2,8 @@ window.IndexView = Backbone.View.extend({
 
   el: $('#openbudget')[0],
 
+  markers: [],
+
   events: {
     'click .search ul li a':                              'showDetail',
     'click .infowindow h3 a':                             'showDetail',
@@ -13,60 +15,40 @@ window.IndexView = Backbone.View.extend({
 
   initialize: function(){
     this.router = this.options.router;
+
     Cases.bind('reset', this.render, this);
     $(document).click(this._hideFilters);
+
+    this.template = ich.index();
   },
 
   render: function(){
-    this.template = ich.index({number_of_cases: Cases.length});
-
-    _.each(Cases.models, function(case_study){
-      $(this.template).find('#results .search ul').append(ich.index_list_item(case_study.toJSON()));
-    }, this);
-
     this.$el.html(this.template);
 
-    if (this.currentTextFilter){
-      this.$el.find('div#results div.search form input.search_box').val(this.currentTextFilter).focus();
-      this._updateSummary(this.currentTextFilter);
-    }
-    if (this.currentFilter){
-      this._updateSummary(this.currentFilter);
-    }
-
-    this._renderFiltersLists();
-
     this._initMap();
+    this._focusSearchForm();
+    this._updateSummary();
+    this._renderList();
+    this._renderFiltersLists();
 
     return this;
   },
 
-  _initMap: function(){
-    var mapChartLayer = new google.maps.ImageMapType({
-      getTileUrl: function(coord, zoom) {
-        var lULP = new google.maps.Point(coord.x*256,(coord.y+1)*256);
-        var lLRP = new google.maps.Point((coord.x+1)*256,coord.y*256);
-        var projectionMap = new MercatorProjection();
-        var lULg = projectionMap.fromDivPixelToLatLng(lULP, zoom);
-        var lLRg = projectionMap.fromDivPixelToLatLng(lLRP, zoom);
-        var countries = "SV|CD|GT|HN|MD|ML|ZM";
-        var data ="1,1,1,1,1,1,1";
-        var limits = "0,1";
-        var selected_color = "";
-        var baseUrl="http://chart.apis.google.com/chart?chs=256x256&chd=t:"+data+"&chco=D0EAF5,FFFFB2,FFFFFF&chld="+countries+"&chf=a,s,B6DDEE|bg,s,00000000&chds="+limits;
-        var bbox="&cht=map:fixed=" + lULg.lat() +","+ lULg.lng() + "," + lLRg.lat() + "," + lLRg.lng();
-        return baseUrl+bbox;
-      },
-      tileSize: new google.maps.Size(256, 256),
-      isPng: true,
-      maxZoom: 18,
-      name: "GMC",
-      alt: "Google Map Chart"
-    });
+  _renderList: function(cases){
+    this.$el.find('.summary').html(ich.index_summary({number_of_cases: (cases || Cases.models).length}));
+    this.$el.find('#results .search ul').empty();
 
+    setMapPolygons(this.map, cases || Cases.models);
+    this._cleanMarkers();
+    _.each(cases || Cases.models, function(case_study){
+      this.$el.find('#results .search ul').append(ich.index_list_item(case_study.toJSON()));
+      this.markers.push(addMarker(this.map, case_study));
+    }, this);
+  },
+
+  _initMap: function(){
     this.map = new google.maps.Map(this.$el.find('#map')[0], map_options);
-    this.map.mapTypes.set('gmc', mapChartLayer);
-    this.map.setMapTypeId('gmc');
+    setMapPolygons(this.map, Cases.models);
 
     var customZoomControl = new CustomZoomControl(this.map);
     customZoomControl.index = 1;
@@ -76,11 +58,14 @@ window.IndexView = Backbone.View.extend({
       map: this.map
     });
 
-    _.each(Cases.models, function(case_study){
-      addMarker(this.map, case_study);
-    }, this);
   },
 
+  _cleanMarkers: function(){
+    _.each(this.markers, function(marker){
+      marker.setMap(null);
+    });
+    this.markers = [];
+  },
 
   _renderFiltersLists: function(){
     var countries_list = $('.filters.countries ul');
@@ -121,16 +106,15 @@ window.IndexView = Backbone.View.extend({
   },
 
   filterByText: function(evt){
-    var textbox = $(evt.currentTarget);
     var self = this;
+    var textbox = $(evt.currentTarget);
     this.currentTextFilter = textbox.val();
 
-    this.$el.find('').text(' in ' + this.currentTextFilter).addClass('show');
+    this.$el.find('.summary .in').text(' in ' + this.currentTextFilter).addClass('show');
 
-    clearTimeout(this.textFilterTimeout);
-    this.textFilterTimeout = setTimeout(function(){
-      Cases.textFilter(self.currentTextFilter);
-    }, 700);
+    Cases.textFilter(this.currentTextFilter, function(cases){
+      self._renderList(cases);
+    });
   },
 
   toggleFilter: function(evt){
@@ -155,7 +139,15 @@ window.IndexView = Backbone.View.extend({
     evt.stopPropagation();
   },
 
-  _updateSummary: function(text){
+  _focusSearchForm: function(){
+    if (this.currentTextFilter){
+      this.$el.find('div#results div.search form input.search_box').val(this.currentTextFilter).focus();
+    }
+  },
+
+  _updateSummary: function(){
+    var text = this.currentFilter || this.currentTextFilter;
+
     this.$el.find('div#results div.search div.summary span.in').html(' in ' + text).addClass('show');
   }
 

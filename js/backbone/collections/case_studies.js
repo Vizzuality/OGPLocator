@@ -46,17 +46,21 @@ var CaseStudies = CartoDB.CartoDBCollection.extend({
     this.fetch();
   },
 
-  textFilter: function(text){
+  textFilter: function(text, callback){
+    var filtered_models = []
+
     if (_.isNull(text) || text === ''){
-      this.fetch();
+      callback.call(this);
+      return;
     }
 
-    this.models = _.filter(this.models, function(model){
+    filtered_models = _.filter(this.models, function(model){
       return _.find(_.values(model.attributes), function(model_value){
         return !_.isNull(model_value) && (model_value).toString().toLowerCase().indexOf(text.toLowerCase()) > 0;
       });
     });
-    this.reset(this.models);
+
+    callback.call(this, filtered_models);
   }
 
 });
