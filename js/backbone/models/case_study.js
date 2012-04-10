@@ -1,13 +1,17 @@
 var CaseStudy = Backbone.Model.extend({
   toJSON: function(){
     var country_name = Countries.getByCartoDBId(this.get('country_id')).get('name');
+    var topic_name = Topics.getByCartoDBId(this.get('topic_id')).get('name');
+
     return _.extend(this.attributes, {
-      classification: this.get('category_id') + this.get('sector') + this.get('tags'),
-      resources: this.get('resources_media') + this.get('resources_document') + this.get('resources_links'),
+      classification: country_name || topic_name,
+      resources: this.get('resources_media') || this.get('resources_document') || this.get('resources_links'),
       country: country_name,
+      topic: topic_name,
       category: Categories.getByCartoDBId(this.get('category_id')).get('name'),
       country_iso: Countries.getByCartoDBId(this.get('country_id')).get('iso'),
-      subtitle_country: country_name && this.get('subtitle')
+      subtitle_country: country_name && this.get('subtitle'),
+      contact: this.get('contact_information') || this.get('website')
     });
   },
 

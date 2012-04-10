@@ -184,18 +184,18 @@
           <h4>Classification</h4>
 
           <ul>
-            {{#category_id}}
+            {{#category}}
             <li>
               <h6>Category</h6>
-              <span>{{category_id}}</span>
+              <span>{{category}}</span>
             </li>
-            {{/category_id}}
-            {{#sector}}
+            {{/category}}
+            {{#topic}}
             <li>
-              <h6>Sector</h6>
-              <span>{{sector}}</span>
+              <h6>Topic</h6>
+              <span>{{topic}}</span>
             </li>
-            {{/sector}}
+            {{/topic}}
           </ul>
 
       	</div>
@@ -215,12 +215,21 @@
       	</div>
         {{/relevant_networks}}
 
-        {{#contact_information}}
+        {{#contact}}
       	<div>
           <h4>Contact</h4>
-          <p>{{contact_information}}</p>
+          <ul>
+            <li>
+              <h6>Contact Information</h6>
+              <p>{{contact_information}}</p>
+            </li>
+            <li>
+              <h6>Web Site</h6>
+              <p>{{website}}</p>
+            </li>
+          </ul>
       	</div>
-        {{/contact_information}}
+        {{/contact}}
 
 
         {{#resources}}
