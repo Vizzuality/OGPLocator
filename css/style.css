@@ -122,7 +122,7 @@ a:hover {text-decoration:underline; color:#C93B00;}
 
         #openbudget header nav .filters li:last-child {
           padding-bottom:4px;
-        }    
+        }
 
         #openbudget header nav .filters a {
           display: block;
@@ -367,6 +367,36 @@ a:hover {text-decoration:underline; color:#C93B00;}
     #openbudget #case_detail .container div p {
       font-size: 15px;
     }
+
+    #openbudget #case_detail #experiencies {
+    }
+
+      #openbudget #case_detail #experiencies h4 {
+        margin: 0;
+      }
+
+      #openbudget #case_detail #experiencies ul {
+        padding: 0;
+        list-style-type: none;
+      }
+
+        #openbudget #case_detail #experiencies ul li {
+          margin: 10px 0;
+        }
+
+          #openbudget #case_detail #experiencies ul li h3 {
+            margin: 0;
+          }
+
+            #openbudget #case_detail #experiencies ul li h3 a {
+              color: #EB4600;
+              text-transform: none;
+            }
+
+          #openbudget #case_detail #experiencies ul li span {
+            color: #cccccc;
+            font-size: 15px;
+          }
 
   #openbudget #case_detail #mini_map{
     position:relative;

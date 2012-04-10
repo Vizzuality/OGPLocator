@@ -11,5 +11,13 @@ var CaseStudy = Backbone.Model.extend({
 
   getLatLong: function(){
     return $.parseJSON(Countries.getByCartoDBId(this.get('country_id')).get('latlon'));
+  },
+
+  getRelated: function(callback){
+    var related = new CaseStudies();
+    related.filterBy('category', this.get('category_id'), function(){
+      console.log(related.models);
+      callback.call(this, related.models);
+    });
   }
 });

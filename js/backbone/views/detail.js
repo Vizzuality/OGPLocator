@@ -9,7 +9,8 @@ window.DetailView = Backbone.View.extend({
   },
 
   events: {
-    'click #back': 'showIndex'
+    'click #back'                       : 'showIndex',
+    'click div#experiencies ul li h3 a' : 'showDetail'
   },
 
   render: function(){
@@ -24,6 +25,8 @@ window.DetailView = Backbone.View.extend({
 
     this.$el.html(this.template);
 
+    this._showRelated();
+
     $(document).scrollTop(0);
 
     return this;
@@ -33,5 +36,20 @@ window.DetailView = Backbone.View.extend({
     evt.preventDefault();
 
     this.router.navigate('', true)
+  },
+
+  showDetail: function(evt){
+    evt.preventDefault();
+    this.router.navigate($(evt.target).attr('href'), true);
+  },
+
+  _showRelated: function(){
+    var self = this;
+    Case.getRelated(function(cases){
+      self.$el.find('#experiencies ul').empty();
+      _.each(cases, function(case_study){
+        self.$el.find('#experiencies ul').append(ich.detail_related_item(case_study.toJSON()));
+      });
+    })
   }
 });
