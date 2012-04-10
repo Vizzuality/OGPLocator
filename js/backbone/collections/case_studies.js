@@ -40,10 +40,19 @@ var CaseStudies = CartoDB.CartoDBCollection.extend({
 
   filterBy: function(filter, id, callback){
     filter = this.valid_filters[filter];
-    if (filter){
-      this.where_ = filter + " = " + id;
+
+    var filtered_models = []
+
+    if (_.isNull(filter)){
+      callback.call(this);
+      return;
     }
-    this.fetch({success: callback});
+
+    filtered_models = _.filter(this.models, function(model){
+      return model.get(filter) == id;
+    });
+
+    callback.call(this, filtered_models);
   },
 
   textFilter: function(text, callback){

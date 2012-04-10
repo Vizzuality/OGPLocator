@@ -16,7 +16,7 @@ var CaseStudy = Backbone.Model.extend({
   getRelated: function(callback){
     var related = new CaseStudies();
     related.filterBy('category', this.get('category_id'), function(){
-      callback.call(this, related.models);
+      callback.call(this, _.first(related.models, 3));
     });
   }
 });

@@ -11,7 +11,7 @@ window.IndexView = Backbone.View.extend({
     'click div#openbudget header li.menu':                'stopPropagation',
     'click div#openbudget header div.filters ul li a':    'navigateToFilter',
     'keyup div#results div.search form input.search_box': 'filterByText',
-    'click div#results div.summary .clear a':              'reloadIndex'
+    'click div#results div.summary .clear a':             'reloadIndex'
   },
 
   initialize: function(){
@@ -48,17 +48,19 @@ window.IndexView = Backbone.View.extend({
   },
 
   _initMap: function(){
-    this.map = new google.maps.Map(this.$el.find('#map')[0], map_options);
-    setMapPolygons(this.map, Cases.models);
+    if (!this.map){
+      this.map = new google.maps.Map(this.$el.find('#map')[0], map_options);
 
-    var customZoomControl = new CustomZoomControl(this.map);
-    customZoomControl.index = 1;
-    this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(customZoomControl);
+      var customZoomControl = new CustomZoomControl(this.map);
+      customZoomControl.index = 1;
+      this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(customZoomControl);
 
-    infoWindow = new InfoWindow({
-      map: this.map
-    });
+      infoWindow = new InfoWindow({
+        map: this.map
+      });
 
+      setMapPolygons(this.map, Cases.models);
+    }
   },
 
   _cleanMarkers: function(){
@@ -73,35 +75,38 @@ window.IndexView = Backbone.View.extend({
 
     var countries_list = $('.filters.countries ul');
     _.each(Countries.models, function(country){
-      countries_list.append(ich.filter_list_item({url: 'country/' + country.get('cartodb_id'), name: country.get('name')}));
+      countries_list.append(ich.filter_list_item({url: 'country/' + country.get('cartodb_id'), name: country.get('name'), type: 'country', cartodb_id: country.get('cartodb_id')}));
     });
 
     var topics_list = $('.filters.topics ul');
     _.each(Topics.models, function(topic){
-      topics_list.append(ich.filter_list_item({url: 'topic/' + topic.get('cartodb_id'), name: topic.get('name')}));
+      topics_list.append(ich.filter_list_item({url: 'topic/' + topic.get('cartodb_id'), name: topic.get('name'), type: 'topic', cartodb_id: topic.get('cartodb_id')}));
     });
 
     var categories_list = $('.filters.categories ul');
     _.each(Categories.models, function(category){
-      categories_list.append(ich.filter_list_item({url: 'category/' + category.get('cartodb_id'), name: category.get('name')}));
+      categories_list.append(ich.filter_list_item({url: 'category/' + category.get('cartodb_id'), name: category.get('name'), type: 'category', cartodb_id: category.get('cartodb_id')}));
     });
 
     var challenges_list = $('.filters.challenges ul');
     _.each(Challenges.models, function(challenge){
-      challenges_list.append(ich.filter_list_item({url: 'challenge/' + challenge.get('cartodb_id'), name: challenge.get('name')}));
+      challenges_list.append(ich.filter_list_item({url: 'challenge/' + challenge.get('cartodb_id'), name: challenge.get('name'), type: 'challenge', cartodb_id: challenge.get('cartodb_id')}));
     });
   },
 
   navigateToFilter: function(evt){
     evt.preventDefault();
     var link = $(evt.currentTarget);
+    link.closest('div.filters').removeClass('show');
     this.router.navigate(link.attr('href'), true);
-    this.currentFilter = link.text();
   },
 
   filterBy: function(filter, id){
     var self = this;
-    Cases.filterBy(filter, id, function(){
+
+    Cases.filterBy(filter, id, function(cases){
+      self._renderList(cases);
+      self.currentFilter = $(".filters a." + filter + "_" + id).text();
       self._updateSummary();
     });
   },
@@ -162,8 +167,8 @@ window.IndexView = Backbone.View.extend({
     }
   },
 
-  _updateSummary: function(filter){
-    var text = filter || this.currentFilter || this.currentTextFilter;
+  _updateSummary: function(){
+    var text = this.currentFilter || this.currentTextFilter;
     if (!text || text === ''){
       this.$el.find('div#results div.search div.summary span.in').empty().removeClass('show');
       this.$el.find('div#results div.search div.summary .clear').removeClass('show');
