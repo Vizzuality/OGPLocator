@@ -26,7 +26,6 @@ window.IndexView = Backbone.View.extend({
   render: function(){
     this.$el.html(this.template);
 
-    this._initMap();
     this._focusSearchForm();
     this._updateSummary();
     this._renderList();
@@ -36,6 +35,8 @@ window.IndexView = Backbone.View.extend({
   },
 
   _renderList: function(cases){
+    this._initMap();
+
     this.$el.find('.summary').html(ich.index_summary({number_of_cases: (cases || Cases.models).length}));
     this.$el.find('#results .search ul').empty();
 
@@ -106,8 +107,7 @@ window.IndexView = Backbone.View.extend({
 
     Cases.filterBy(filter, id, function(cases){
       self._renderList(cases);
-      self.currentFilter = $(".filters a." + filter + "_" + id).text();
-      self._updateSummary();
+      self._updateSummary($(".filters a." + filter + "_" + id).text());
     });
   },
 
@@ -167,8 +167,8 @@ window.IndexView = Backbone.View.extend({
     }
   },
 
-  _updateSummary: function(){
-    var text = this.currentFilter || this.currentTextFilter;
+  _updateSummary: function(text){
+    text = text || this.currentFilter || this.currentTextFilter;
     if (!text || text === ''){
       this.$el.find('div#results div.search div.summary span.in').empty().removeClass('show');
       this.$el.find('div#results div.search div.summary .clear').removeClass('show');
