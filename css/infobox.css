@@ -6,13 +6,18 @@
 
   #map .infowindow .close {
     position: absolute;
-    top: 6px;
-    right: 11px;
+    top: 0px;
+    right: 8px;
     display: block;
-    width: 5px;
-    height: 5px;
-    background: transparent url('/OGPLocator/img/close_icon.png') no-repeat center center;
+    padding:3px;
+    font:normal 12px Arial;
+    color:#999999;
+    text-decoration:none;
   }
+
+  #map .infowindow .close:hover {
+    color:#555555;
+  }  
 
   #map .infowindow .t, #map .infowindow .b {
     position: absolute;
@@ -37,12 +42,23 @@
 
     #map .infowindow .content h3 {
       margin: 3px 0;
-      line-height: 13px;
+      padding:0;
+      line-height:21px;
       font-family: "Gill Sans", Geneva, Tahoma, Arial, sans-serif;
       text-transform: none;
     }
 
-      #map .infowindow .content h3 a {
-        color: #EB4600;
-        text-decoration: none;
-      }
+    #map .infowindow .content h3 a {
+      color:#EB4600;
+    }
+
+    #map .infowindow .content h3 a:hover {
+      color:#C93B00;
+    }
+
+    #map .infowindow .content p {
+      padding:0;
+      margin:10px 0 0;
+      font-size:13px;
+      line-height:normal!important;
+    }

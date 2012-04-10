@@ -62,4 +62,8 @@ function addMarker(map, case_study){
     infoWindow.setContent(case_study.toJSON());
     infoWindow.open(evt.latLng);
   });
+
+  google.maps.event.addDomListener(map, 'click', function(evt) {
+    infoWindow.hide();
+  });
 }

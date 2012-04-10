@@ -167,6 +167,7 @@
       <div class="sidebar right">
         <div id="mini_map">
           <img src="https://chart.googleapis.com/chart?cht=map:auto=50,50,50,50&chs=298x348&chld={{country_iso}}&chco=D0EAF5%7CF4FCFF&chf=bg,s,B6DDEE" alt="" />
+          <p>{{country}}</p>
         </div>
 
         {{#classification}}
@@ -272,13 +273,11 @@
       <div class="header">
       <hgroup>
       <h3><a href="detail/{{cartodb_id}}">{{title}}</a></h3>
-      <span>{{category}}</span>
-      <span>&middot;</span>
-      <span>{{country}}</span>
+      <p>{{category}} &middot; {{country}}</p>
       </hgroup>
       </div>
       </div>
-      <a href="#" class="close"></a>
+      <a href="#" class="close">x</a>
       <div class="t"></div><div class="b"></div>
     </div>
   </script>

@@ -36,6 +36,9 @@ h6 {
 	padding-bottom: 5px;
 }
 
+a {color:#EB4600; text-decoration:none;}
+a:hover {text-decoration:underline; color:#C93B00;}
+
 #openbudget a {
   float: none;
   background: transparent;
@@ -66,8 +69,9 @@ h6 {
   }
 
   #openbudget header nav{
-    width: 62%;
-    vertical-align: middle;
+    float:right;
+    width:auto;
+    margin:27px 0 0 0;
     text-align: right;
   }
 
@@ -113,23 +117,27 @@ h6 {
 
         #openbudget header nav .filters li {
           display: block;
+          padding:7px 0;
         }
 
+        #openbudget header nav .filters li:last-child {
+          padding-bottom:4px;
+        }    
+
         #openbudget header nav .filters a {
-          display: inline;
-          float: none;
-          background-color: transparent;
+          display: block;
+          width:100%;
           margin: 0;
           padding: 0;
           color: #FA5200;
-  				font-family: "Gill Sans", Geneva, Tahoma, Arial, sans-serif;
-          font-size: 13px;
-          font-weight: normal;
+          font:normal 13px "Gill Sans", Geneva, Tahoma, Arial, sans-serif;
+          line-height:16px;
+          text-align:left;
         }
 
 
   #openbudget #map{
-    width: 960px;
+    width: 958px;
     height: 320px;
     margin: 4px 0 32px;
     border: 1px solid rgba(0, 0, 0, 0.15)
@@ -213,6 +221,11 @@ h6 {
         vertical-align: middle;
       }
 
+      #openbudget #results .search form input.search_box:focus {
+        outline:none;
+        color:#777777;
+      }
+
       #openbudget #results .search form input.mag_glass {
         position: absolute;
         top: 10px;
@@ -260,6 +273,11 @@ h6 {
           color: inherit;
         }
 
+        #openbudget #results .search ul li h3 a:hover {
+          color: #C93B00;
+          text-decoration:underline;
+        }
+
         #openbudget #results .search ul li a.desc, #openbudget #results .search ul li a.where {
           font-size: 13px;
         }
@@ -299,6 +317,11 @@ h6 {
           text-decoration: none;
         }
 
+        #openbudget .two_columns .right div a:hover {
+          color: #C93B00;
+          text-decoration:underline;
+        }
+
       #openbudget .two_columns .right div ul{
         margin: 0;
         padding: 0;
@@ -322,7 +345,9 @@ h6 {
   }
 
     #openbudget #case_detail .container header h1 {
-      line-height: 0px;
+      padding:0;
+      margin:0;
+      line-height:45px;
     }
 
     #openbudget #case_detail .container header span {
@@ -344,10 +369,23 @@ h6 {
     }
 
   #openbudget #case_detail #mini_map{
+    position:relative;
     width: 298px;
     height: 348px;
     padding: 0;
     border: 1px solid rgba(0, 0, 0, 0.15)
+  }
+
+  #openbudget #case_detail #mini_map p{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:150px;
+    margin:-50px 0 0 -75px;
+    text-align:center;
+    color:#666666;
+    font:bold 12px Arial;
+    text-transform:uppercase;
   }
 
   #openbudget #case_detail .sidebar {
