@@ -41,7 +41,7 @@ window.IndexView = Backbone.View.extend({
   _renderList: function(cases){
     this._initMap();
 
-    this._updateSummary((cases || Cases.models).length)
+    this._updateSummary((cases || Cases.models).length);
     this.$el.find('#results .search ul').empty();
 
     setMapPolygons(this.map, cases || Cases.models);
@@ -152,8 +152,8 @@ window.IndexView = Backbone.View.extend({
     this.$el.find('div#results div.search form input.search_box').val('');
     this.currentTextFilter = null;
     this.currentFilter = null;
-    this.router.navigate('', true);
-    //this._renderList();
+    this.router.navigate('');
+    this.router.index();
   },
 
   toggleFilter: function(evt){
