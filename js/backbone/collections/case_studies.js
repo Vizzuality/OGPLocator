@@ -42,29 +42,28 @@ var CaseStudies = CartoDB.CartoDBCollection.extend({
   filterBy: function(filter, id, callback){
     filter = this.valid_filters[filter];
 
-    var filtered_models = []
-
     if (_.isNull(filter)){
       callback.call(this);
       return;
     }
 
-    filtered_models = _.filter(this.models, function(model){
+    this.filtered_models = [];
+    this.filtered_models = _.filter(this.models, function(model){
       return model.get(filter) == id;
     });
 
-    callback.call(this, filtered_models);
+    callback.call(this, this.filtered_models);
   },
 
   textFilter: function(text, callback){
     var filtered_models = []
 
     if (_.isNull(text) || text === ''){
-      callback.call(this);
+      callback.call(this, this.filtered_models);
       return;
     }
 
-    filtered_models = _.filter(this.models, function(model){
+    filtered_models = _.filter(this.filtered_models || this.models, function(model){
       return _.find(_.values(model.attributes), function(model_value){
         return !_.isNull(model_value) && (model_value).toString().toLowerCase().indexOf(text.toLowerCase()) > 0;
       });

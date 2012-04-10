@@ -34,8 +34,7 @@ window.DetailView = Backbone.View.extend({
 
   showIndex: function(evt){
     evt.preventDefault();
-
-    this.router.navigate('', true)
+    window.history.back();
   },
 
   showDetail: function(evt){
