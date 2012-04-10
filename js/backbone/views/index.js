@@ -116,7 +116,11 @@ window.IndexView = Backbone.View.extend({
 
     this.currentFilter = this.$el.find(".filters a." + filter + "_" + id).text();
     Cases.filterBy(filter, id, function(cases){
-      self._renderList(cases);
+      if (self.currentTextFilter){
+        self._focusSearchForm();
+      }else{
+        self._renderList(cases);
+      }
     });
 
     return this;

@@ -19,7 +19,7 @@ var MainRouter = Backbone.Router.extend({
 
   filter: function(filter, id){
     this.last_visited_index = filter + '/' + id;
-    this.index_view().render().filterBy(filter, id).render();
+    this.index_view().render().filterBy(filter, id);
   },
 
   detail: function(id){
