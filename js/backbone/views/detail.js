@@ -21,7 +21,11 @@ window.DetailView = Backbone.View.extend({
       return;
     }
 
-    this.template = ich.detail(Case.toJSON());
+    var detail_json = Case.toJSON();
+    _.each(['overview', 'background', 'implementation', 'critical_issues'], function(key){
+      detail_json[key + '_html'] = ich.paragraph({paragraphs: detail_json[key].split('\n')}).html();
+    });
+    this.template = ich.detail(detail_json);
 
     this.$el.html(this.template);
 

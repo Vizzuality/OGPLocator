@@ -146,22 +146,22 @@
 
           <div>
             <h4>Overview</h4>
-            <p>{{overview}}</p>
+            {{{overview_html}}}
           </div>
 
           <div>
             <h4>Background</h4>
-            <p>{{background}}</p>
+            {{{background_html}}}
           </div>
 
           <div>
             <h4>Implementation</h4>
-            <p>{{implementation}}</p>
+            {{{implementation_html}}}
           </div>
 
           <div>
             <h4>Critical issues & Achievements</h4>
-            <p>{{critical_issues}}</p>
+            {{{critical_issues_html}}}
           </div>
 
         </div>
@@ -277,6 +277,14 @@
       {{/subtitle_country}}
       <span>Open Budget in {{country}}</span>
     </li>
+  </script>
+
+  <script id="paragraph" type="text/html">
+    <div>
+      {{#paragraphs}}
+      <p>{{.}}</p>
+      {{/paragraphs}}
+    </div>
   </script>
 
   <script id="infobox" type="text/html">
