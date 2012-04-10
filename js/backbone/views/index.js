@@ -10,7 +10,8 @@ window.IndexView = Backbone.View.extend({
     'click div#openbudget header li.menu a.filter':       'toggleFilter',
     'click div#openbudget header li.menu':                'stopPropagation',
     'click div#openbudget header div.filters ul li a':    'navigateToFilter',
-    'keyup div#results div.search form input.search_box': 'filterByText'
+    'keyup div#results div.search form input.search_box': 'filterByText',
+    'click div#results div.summary .clear a':              'reloadIndex'
   },
 
   initialize: function(){
@@ -122,6 +123,15 @@ window.IndexView = Backbone.View.extend({
     });
   },
 
+  reloadIndex: function(evt){
+    evt.preventDefault();
+    this.currentFilter = null;
+    this.currentTextFilter = null;
+    this.router.navigate('');
+    Cases.where_ = null;
+    Cases.fetch();
+  },
+
   toggleFilter: function(evt){
     evt.preventDefault();
     evt.stopPropagation();
@@ -155,10 +165,13 @@ window.IndexView = Backbone.View.extend({
   _updateSummary: function(filter){
     var text = filter || this.currentFilter || this.currentTextFilter;
     if (!text || text === ''){
+      this.$el.find('div#results div.search div.summary span.in').empty().removeClass('show');
+      this.$el.find('div#results div.search div.summary .clear').removeClass('show');
       return;
+    }else{
+      this.$el.find('div#results div.search div.summary span.in').html(' in ' + text).addClass('show');
+      this.$el.find('div#results div.search div.summary .clear').addClass('show');
     }
-
-    this.$el.find('div#results div.search div.summary span.in').html(' in ' + text).addClass('show');
   }
 
 

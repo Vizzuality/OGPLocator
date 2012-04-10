@@ -241,12 +241,16 @@ a:hover {text-decoration:underline; color:#C93B00;}
       font-size: 15px;
     }
 
-      #openbudget #results .search div.summary .in{
+      #openbudget #results .search div.summary .in, #openbudget #results .search div.summary .clear {
         display: none;
       }
 
-      #openbudget #results .search div.summary .in.show{
+      #openbudget #results .search div.summary .in.show, #openbudget #results .search div.summary .clear.show {
         display: inline;
+      }
+
+      #openbudget #results .search div.summary .clear a {
+        color: #EB4600;
       }
 
     #openbudget #results .search ul {
