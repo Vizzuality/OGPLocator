@@ -27,6 +27,12 @@ window.DetailView = Backbone.View.extend({
     });
     this.template = ich.detail(detail_json);
 
+    if (detail_json.video){
+      $.getJSON('http://www.youtube.com/oembed?url=' + detail_json.video + '&format=json', function(oembed){
+        $('.video').html(oembed.html);
+      });
+    }
+
     this.$el.html(this.template);
 
     this._showRelated();
