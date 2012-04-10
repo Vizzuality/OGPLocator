@@ -22,14 +22,28 @@ window.DetailView = Backbone.View.extend({
     }
 
     var detail_json = Case.toJSON();
-    _.each(['overview', 'background', 'implementation', 'critical_issues'], function(key){
-      detail_json[key + '_html'] = ich.paragraph({paragraphs: detail_json[key].split('\n')}).html();
+    _.each(['overview',
+            'background',
+            'implementation',
+            'critical_issues',
+            'contact_information',
+            'resources_document',
+            'resources_links',
+            'resources_media',
+            'relevant_networks',
+            'implementing_partners'], function(key){
+      !detail_json[key] || (detail_json[key + '_html'] = ich.paragraph({paragraphs: detail_json[key].split('\n')}).html());
     });
     this.template = ich.detail(detail_json);
 
     if (detail_json.video){
-      $.getJSON('http://www.youtube.com/oembed?url=' + detail_json.video + '&format=json', function(oembed){
-        $('.video').html(oembed.html);
+      console.log('http://www.youtube.com/oembed?callback=?&url=' + detail_json.video + '&format=jsonc')
+      $.ajax({
+        url : 'http://www.youtube.com/oembed?callback=?&url=' + detail_json.video + '&format=jsonc',
+        dataType: 'jsonp',
+        success: function(data) {
+          $('.video').html(data.html);
+        }
       });
     }
 

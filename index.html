@@ -204,19 +204,19 @@
       	</div>
         {{/classification}}
 
-        {{#implementing_partners}}
+        {{#implementing_partners_html}}
       	<div>
           <h4>Implementing partners</h4>
-          <p>{{implementing_partners}}</p>
+          <p>{{{implementing_partners_html}}}</p>
       	</div>
-        {{/implementing_partners}}
+        {{/implementing_partners_html}}
 
-        {{#relevant_networks}}
+        {{#relevant_networks_html}}
       	<div>
           <h4>Relevant Networks</h4>
-          <p>{{relevant_networks}}</p>
+          <p>{{{relevant_networks_html}}}</p>
       	</div>
-        {{/relevant_networks}}
+        {{/relevant_networks_html}}
 
         {{#contact}}
       	<div>
@@ -224,7 +224,7 @@
           <ul>
             <li>
               <h6>Contact Information</h6>
-              <p>{{contact_information}}</p>
+              <p>{{{contact_information_html}}}</p>
             </li>
             <li>
               <h6>Web Site</h6>
@@ -240,26 +240,26 @@
           <h4>Related resources</h4>
           <ul>
 
-            {{#resources_media}}
+            {{#resources_media_html}}
           	<li>
           		<h6>Media</h6>
-              <p>{{resources_media}}</p>
+              <p>{{{resources_media_html}}}</p>
           	</li>
-            {{/resources_media}}
+            {{/resources_media_html}}
 
-            {{#resources_document}}
+            {{#resources_document_html}}
           	<li>
           		<h6>Documents</h6>
-              <p>{{resources_document}}</p>
+              <p>{{{resources_document_html}}}</p>
           	</li>
-            {{/resources_document}}
+            {{/resources_document_html}}
 
-            {{#resources_links}}
+            {{#resources_links_html}}
           	<li>
           		<h6>Links & Further reading</h6>
-              <p>{{resources_links}}</p>
+              <p>{{{resources_links_html}}}</p>
           	</li>
-            {{/resources_links}}
+            {{/resources_links_html}}
 
           </ul>
       	</div>
