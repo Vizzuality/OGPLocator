@@ -27,6 +27,8 @@ window.IndexView = Backbone.View.extend({
   render: function(){
     this.$el.html(this.template);
 
+    $('head title').text('Experience Locator');
+
     this._renderFiltersLists();
 
     if (this.currentTextFilter){

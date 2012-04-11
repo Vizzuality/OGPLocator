@@ -21,11 +21,15 @@ window.DetailView = Backbone.View.extend({
       return;
     }
 
+    $('head title').text('Experience Locator' + Case.get('title'));
+
     this.template = ich.detail(Case.toJSON());
 
     this.$el.html(this.template);
 
     this._showRelated();
+
+    this._loadDisqus();
 
     $(document).scrollTop(0);
 
@@ -50,5 +54,12 @@ window.DetailView = Backbone.View.extend({
         self.$el.find('#experiencies ul').append(ich.detail_related_item(case_study.toJSON()));
       });
     })
+  },
+
+  _loadDisqus: function(){
+    //disqus_url = 'detail/' + self.case_id;
+    disqus_url = window.location.href;
+
+    $.getScript ("http://" + disqus_shortname + ".disqus.com/embed.js");
   }
 });
