@@ -154,8 +154,11 @@
             {{{background_html}}}
           </div>
 
-          <div class="video">
+          {{#video_player_url}}
+          <div>
+            <iframe src="{{video_player_url}}" frameborder="0"></iframe>
           </div>
+          {{/video_player_url}}
 
           <div>
             <h4>Implementation</h4>
@@ -339,6 +342,7 @@
 <script src="/OGPLocator/js/libs/backbone.cartodb.js" type="text/javascript"></script>
 <script src="/OGPLocator/js/libs/infobox.js" type="text/javascript"></script>
 <script src="/OGPLocator/js/libs/mercatorProjection.js" type="text/javascript"></script>
+<script src="/OGPLocator/js/libs/jquery.url.js" type="text/javascript"></script>
 
 <script src="/OGPLocator/js/backbone/cartodb.js" type="text/javascript"></script>
 <script src="/OGPLocator/js/backbone/routers/main_router.js" type="text/javascript"></script>

@@ -34,18 +34,8 @@ window.DetailView = Backbone.View.extend({
             'implementing_partners'], function(key){
       !detail_json[key] || (detail_json[key + '_html'] = ich.paragraph({paragraphs: detail_json[key].split('\n')}).html());
     });
+    console.log(detail_json)
     this.template = ich.detail(detail_json);
-
-    if (detail_json.video){
-      console.log('http://www.youtube.com/oembed?callback=?&url=' + detail_json.video + '&format=jsonc')
-      $.ajax({
-        url : 'http://www.youtube.com/oembed?callback=?&url=' + detail_json.video + '&format=jsonc',
-        dataType: 'jsonp',
-        success: function(data) {
-          $('.video').html(data.html);
-        }
-      });
-    }
 
     this.$el.html(this.template);
 

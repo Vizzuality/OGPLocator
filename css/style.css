@@ -370,6 +370,11 @@ a:hover {text-decoration:underline; color:#C93B00;}
 			line-height: 22px;
     }
 
+    #openbudget #case_detail .container div iframe {
+      width: 571px;
+      height: 320px;
+    }
+
     #openbudget #case_detail #experiencies {
     }
 
