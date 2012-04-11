@@ -1,9 +1,21 @@
 var CaseStudy = Backbone.Model.extend({
+  html_fields: ['overview',
+            'background',
+            'implementation',
+            'critical_issues',
+            'contact_information',
+            'website',
+            'resources_document',
+            'resources_links',
+            'resources_media',
+            'relevant_networks',
+            'implementing_partners'],
+
   toJSON: function(){
     var country_name = Countries.getByCartoDBId(this.get('country_id')).get('name');
     var topic_name = Topics.getByCartoDBId(this.get('topic_id')).get('name');
 
-    return _.extend(this.attributes, {
+    var json_object = _.extend(this.attributes, {
       classification: country_name || topic_name,
       resources: this.get('resources_media') || this.get('resources_document') || this.get('resources_links'),
       country: country_name,
@@ -14,6 +26,24 @@ var CaseStudy = Backbone.Model.extend({
       contact: this.get('contact_information') || this.get('website'),
       video_player_url: this.youtube_player_url()
     });
+
+    _.each(this.html_fields, function(key){
+      var field = json_object[key];
+      if (field){
+        field = field.replace(uri_regexp, function(match){
+          if (match.match(mail_regexp)) {
+            return escape('<a href="mailto:' + unescape(match) + '">' + unescape(match) + '</a>');
+          }
+
+          var url = $.url(match);
+          return escape('<a href="' + unescape(match) + '">' + unescape(url.attr('host')) + '</a>');
+        });
+
+        json_object[key + '_html'] = unescape(ich.paragraph({paragraphs: field.split('\n')}).html());
+      }
+    });
+
+    return json_object;
   },
 
   youtube_player_url: function(){

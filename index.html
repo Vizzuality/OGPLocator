@@ -225,14 +225,18 @@
       	<div>
           <h4>Contact</h4>
           <ul>
+            {{#contact_information_html}}
             <li>
               <h6>Contact Information</h6>
               <p>{{{contact_information_html}}}</p>
             </li>
+            {{/contact_information_html}}
+            {{#website_html}}
             <li>
               <h6>Web Site</h6>
-              <p>{{website}}</p>
+              <p>{{{website_html}}}</p>
             </li>
+            {{/website_html}}
           </ul>
       	</div>
         {{/contact}}

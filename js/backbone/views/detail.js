@@ -21,21 +21,7 @@ window.DetailView = Backbone.View.extend({
       return;
     }
 
-    var detail_json = Case.toJSON();
-    _.each(['overview',
-            'background',
-            'implementation',
-            'critical_issues',
-            'contact_information',
-            'resources_document',
-            'resources_links',
-            'resources_media',
-            'relevant_networks',
-            'implementing_partners'], function(key){
-      !detail_json[key] || (detail_json[key + '_html'] = ich.paragraph({paragraphs: detail_json[key].split('\n')}).html());
-    });
-    console.log(detail_json)
-    this.template = ich.detail(detail_json);
+    this.template = ich.detail(Case.toJSON());
 
     this.$el.html(this.template);
 
