@@ -186,15 +186,18 @@ a:hover {text-decoration:underline; color:#C93B00;}
       vertical-align: top;
     }
 
-    #openbudget .two_columns .left {
-    }
-
     #openbudget .two_columns .left .container {
-      width: 566px;
-      padding: 32px 32px 0 32px;
+      width: 630px;
+      padding: 32px 0 0;
       margin-bottom: 30px;
       background-color: white;
       border: 1px solid #CCCCCC;
+    }
+
+    #openbudget .container > header, #openbudget .container > div {
+      padding: 0 32px;
+      margin: 0;
+      margin-bottom: 40px;
     }
 
     #openbudget #results .search {
@@ -203,6 +206,7 @@ a:hover {text-decoration:underline; color:#C93B00;}
 
     #openbudget #results .search form {
       position: relative;
+      padding: 0 32px;
     }
 
       #openbudget #results .search form img, #openbudget #results .search form input.search_box {
@@ -229,7 +233,7 @@ a:hover {text-decoration:underline; color:#C93B00;}
       #openbudget #results .search form input.mag_glass {
         position: absolute;
         top: 10px;
-        right: 10px;
+        right: 42px;
         width: 20px;
         height: 20px;
         background: transparent url("/OGPLocator/img/magnifier_icon.png") no-repeat center center;
@@ -259,7 +263,7 @@ a:hover {text-decoration:underline; color:#C93B00;}
     }
 
       #openbudget #results .search ul li {
-        padding: 22px 0;
+        padding: 22px 32px;
         border-top: 1px solid rgba(204, 204, 204, 0.6);
       }
 
@@ -341,10 +345,6 @@ a:hover {text-decoration:underline; color:#C93B00;}
   text-decoration: none;
 }
 
-  #openbudget #case_detail .container header {
-    margin-bottom: 40px;
-  }
-
     #openbudget #case_detail .container header h1 {
       padding:0;
       margin:0;
@@ -356,10 +356,6 @@ a:hover {text-decoration:underline; color:#C93B00;}
       font-size: 15px;
     }
 
-  #openbudget #case_detail .container div {
-    margin-bottom: 40px;
-  }
-
     #openbudget #case_detail .container div h4 {
       color: #009933;
       line-height: 0px;
@@ -370,7 +366,58 @@ a:hover {text-decoration:underline; color:#C93B00;}
 			line-height: 22px;
     }
 
+    #openbudget #case_detail .container div iframe {
+      width: 571px;
+      height: 320px;
+    }
+
+    #openbudget #case_detail #disqus_thread {
+      margin: 0;
+      padding-bottom: 0;
+      border-top: 1px solid #e5e5e5;
+    }
+
+    #openbudget #case_detail #disqus_thread #dsq-content {
+      margin: 20px;
+    }
+
+    #openbudget #case_detail #disqus_thread #dsq-global-toolbar {
+      margin: 4px 0 0;
+      padding: 0;
+      float: right;
+    }
+
+    #openbudget #case_detail #disqus_thread #dsq-sort-by {
+      display: none;
+    }
+
+    #openbudget #case_detail #disqus_thread #dsq-subscribe {
+      display: none;
+    }
+
+    #openbudget #case_detail #disqus_thread .dsq-comment-actions {
+      display: none;
+    }
+
+    #openbudget #case_detail #disqus_thread #dsq-reply{
+      margin-top: 0;
+    }
+
+    #openbudget #case_detail #disqus_thread h3 {
+      color: #009933;
+    }
+
+    #openbudget #case_detail #disqus_thread .dsq-share-on h4 {
+      line-height: inherit;
+    }
+
+    #openbudget #case_detail #disqus_thread #dsq-content #dsq-footer {
+      margin: 0;
+    }
+
     #openbudget #case_detail #experiencies {
+      width: 566px;
+      padding: 32px 32px 0 32px;
     }
 
       #openbudget #case_detail #experiencies h4 {

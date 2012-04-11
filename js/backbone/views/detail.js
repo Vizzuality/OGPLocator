@@ -21,35 +21,15 @@ window.DetailView = Backbone.View.extend({
       return;
     }
 
-    var detail_json = Case.toJSON();
-    _.each(['overview',
-            'background',
-            'implementation',
-            'critical_issues',
-            'contact_information',
-            'resources_document',
-            'resources_links',
-            'resources_media',
-            'relevant_networks',
-            'implementing_partners'], function(key){
-      !detail_json[key] || (detail_json[key + '_html'] = ich.paragraph({paragraphs: detail_json[key].split('\n')}).html());
-    });
-    this.template = ich.detail(detail_json);
+    $('head title').text('Experience Locator' + Case.get('title'));
 
-    if (detail_json.video){
-      console.log('http://www.youtube.com/oembed?callback=?&url=' + detail_json.video + '&format=jsonc')
-      $.ajax({
-        url : 'http://www.youtube.com/oembed?callback=?&url=' + detail_json.video + '&format=jsonc',
-        dataType: 'jsonp',
-        success: function(data) {
-          $('.video').html(data.html);
-        }
-      });
-    }
+    this.template = ich.detail(Case.toJSON());
 
     this.$el.html(this.template);
 
     this._showRelated();
+
+    this._loadDisqus();
 
     $(document).scrollTop(0);
 
@@ -74,5 +54,12 @@ window.DetailView = Backbone.View.extend({
         self.$el.find('#experiencies ul').append(ich.detail_related_item(case_study.toJSON()));
       });
     })
+  },
+
+  _loadDisqus: function(){
+    //disqus_url = 'detail/' + self.case_id;
+    disqus_url = window.location.href;
+
+    $.getScript ("http://" + disqus_shortname + ".disqus.com/embed.js");
   }
 });
