@@ -286,6 +286,13 @@ a:hover {text-decoration:underline; color:#C93B00;}
           text-decoration:underline;
         }
 
+        #openbudget #results .search ul li p {
+					margin-top: 5px;
+					font-size: 13px;
+					line-height: 18px;
+          color: #999999;
+        }
+
         #openbudget #results .search ul li a.desc, #openbudget #results .search ul li a.where {
           font-size: 13px;
         }
