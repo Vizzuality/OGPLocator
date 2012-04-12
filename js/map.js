@@ -66,7 +66,7 @@ var OGPIcon = L.Icon.extend({
   shadowUrl: null,
   iconSize: new L.Point(19, 19),
   iconAnchor: new L.Point(9, 9),
-  popupAnchor: new L.Point(0, 5)
+  popupAnchor: new L.Point(1, 10)
 });
 
 function addMarker(map, case_study){
