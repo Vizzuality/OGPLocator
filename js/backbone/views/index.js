@@ -5,7 +5,7 @@ window.IndexView = Backbone.View.extend({
   markers: [],
 
   events: {
-    'click div#openbudget div#results div.search ul li h3 a': 'showDetail',
+    'click div#openbudget div#results div.search ul li a': 'showDetail',
     'click div#map .infowindow h3 a':                         'showDetail',
     'click div#openbudget header li.menu a.filter':           'toggleFilter',
     'click div#openbudget header li.menu':                    'stopPropagation',
