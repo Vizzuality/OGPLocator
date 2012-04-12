@@ -133,6 +133,7 @@ a:hover {text-decoration:underline; color:#C93B00;}
           font:normal 13px "Gill Sans", Geneva, Tahoma, Arial, sans-serif;
           line-height:16px;
           text-align:left;
+          text-transform: none;
         }
 
       a#cartodb_logo {
