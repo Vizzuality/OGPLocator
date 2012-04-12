@@ -42,35 +42,26 @@ window.IndexView = Backbone.View.extend({
 
   _renderList: function(cases){
     this._initMap();
-
-    this._updateSummary((cases || Cases.models).length);
+    this._cleanMarkers();
     this.$el.find('#results .search ul').empty();
 
-    setMapPolygons(this.map, cases || Cases.models);
-    this._cleanMarkers();
+    this._updateSummary((cases || Cases.models).length);
 
     var ordered_cases = _.sortBy((cases || Cases.models), function(model){
       return model.get('title');
     });
+
     _.each(ordered_cases, function(case_study){
+      addMarker(this.map, case_study);
       this.$el.find('#results .search ul').append(ich.index_list_item(case_study.toJSON()));
-      this.markers.push(addMarker(this.map, case_study));
     }, this);
+
+    setMapPolygons(this.map, cases || Cases.models);
   },
 
   _initMap: function(){
     if (!this.map){
-      this.map = new google.maps.Map(this.$el.find('#map')[0], map_options);
-
-      var customZoomControl = new CustomZoomControl(this.map);
-      customZoomControl.index = 1;
-      this.map.controls[google.maps.ControlPosition.TOP_RIGHT].push(customZoomControl);
-
-      infoWindow = new InfoWindow({
-        map: this.map
-      });
-
-      setMapPolygons(this.map, Cases.models);
+      this.map = new L.Map('map').setView(new L.LatLng(37.26312408340919, -4.66094970703125), 2);
     }
   },
 

@@ -1,24 +1,11 @@
 var map_options = {
   zoom: 2,
-  center: new google.maps.LatLng(34.397, 0),
   panControl: false,
   mapTypeControl: false,
   scaleControl: false,
   streetViewControl: false,
   overviewMapControl: false,
   backgroundColor: '#B6DDEE',
-  zoomControl: false
-};
-
-var mini_map_options = {
-  zoom: 8,
-  center: new google.maps.LatLng(34.397, 0),
-  mapTypeId: google.maps.MapTypeId.ROADMAP,
-  panControl: false,
-  mapTypeControl: false,
-  scaleControl: false,
-  streetViewControl: false,
-  overviewMapControl: false,
   zoomControl: false
 };
 
@@ -48,55 +35,65 @@ function CustomZoomControl(map){
 }
 
 function setMapPolygons(map, cases){
-  var mapChartLayer = new google.maps.ImageMapType({
-    getTileUrl: function(coord, zoom) {
-      var lULP = new google.maps.Point(coord.x*256,(coord.y+1)*256);
-      var lLRP = new google.maps.Point((coord.x+1)*256,coord.y*256);
-      var projectionMap = new MercatorProjection();
-      var lULg = projectionMap.fromDivPixelToLatLng(lULP, zoom);
-      var lLRg = projectionMap.fromDivPixelToLatLng(lLRP, zoom);
-      var countries = _.map(cases, function(model){
-        return model.toJSON().country_iso.toUpperCase();
-      }).join('|');
-      var data = _.map(cases, function(model){
-        return '1';
-      }).join(',');
-      var limits = "0,1";
-      var selected_color = "";
-      var baseUrl="http://chart.apis.google.com/chart?chs=256x256&chd=t:"+data+"&chco=D0EAF5,FFFFB2,FFFFFF&chld="+countries+"&chf=a,s,B6DDEE|bg,s,00000000&chds="+limits;
-      var bbox="&cht=map:fixed=" + lULg.lat() +","+ lULg.lng() + "," + lLRg.lat() + "," + lLRg.lng();
-      return baseUrl+bbox;
-    },
-    tileSize: new google.maps.Size(256, 256),
-    isPng: true,
-    maxZoom: 18,
-    name: "GMC",
-    alt: "Google Map Chart"
+
+  var selectedCountries = _.map(cases, function(model){
+    return model.toJSON().country_iso.toUpperCase();
   });
 
-  map.mapTypes.set('gmc', mapChartLayer);
-  map.setMapTypeId('gmc');
+  console.log(selectedCountries);
+  var style = "#ogp_countries {polygon-fill:#D0EAF5;polygon-opacity: 1;line-opacity:0;line-color: #FFFFFF;";
+
+  _.each(selectedCountries, function(value) {
+    style += '[iso_a2="' + value + '"]{polygon-fill:#FFF;line-opacity:0.4;line-color: #000;}';
+  });
+
+  style += "}";
+
+    cartodb_leaflet = new L.CartoDBLayer({
+      map_canvas:     'map',
+      map:            map,
+      user_name:      'ogp',
+      table_name:     'ogp_countries',
+      tile_style:     style,
+      infowindow:     false,
+      query:          'SELECT * FROM {{table_name}}',
+      interactivity:  false,
+      auto_bound:     false,
+      debug:          false
+    });
 }
 
+var OGPIcon = L.Icon.extend({
+  iconUrl: '/OGPLocator/img/marker_single_selected.png',
+  shadowUrl: null,
+  iconSize: new L.Point(19, 19),
+  iconAnchor: new L.Point(9, 9)
+});
+
 function addMarker(map, case_study){
-  latlon = case_study.getLatLong().coordinates;
+  var icon = new OGPIcon();
+  var latlon = case_study.getLatLong().coordinates;
+  var marker = new L.Marker(new L.LatLng(latlon[1], latlon[0]), {icon: icon});
 
-  var marker = new google.maps.Marker({
-    position: new google.maps.LatLng(latlon[1], latlon[0]),
-    map: map,
-    title: case_study.get('name'),
-    clickable: true,
-    icon: '/OGPLocator/img/marker_single_selected.png'
-  });
+  map.addLayer(marker);
+  marker.bindPopup(ich.infobox(case_study).html());
 
-  google.maps.event.addDomListener(marker, 'click', function(evt) {
-    infoWindow.setContent(case_study.toJSON());
-    infoWindow.open(evt.latLng);
-  });
+  //var marker = new google.maps.Marker({
+    //position: new google.maps.LatLng(latlon[1], latlon[0]),
+    //map: map,
+    //title: case_study.get('name'),
+    //clickable: true,
+    //icon: '/OGPLocator/img/marker_single_selected.png'
+  //});
 
-  google.maps.event.addDomListener(map, 'click', function(evt) {
-    infoWindow.hide();
-  });
+  //google.maps.event.addDomListener(marker, 'click', function(evt) {
+    //infoWindow.setContent(case_study.toJSON());
+    //infoWindow.open(evt.latLng);
+  //});
 
-  return marker;
+  //google.maps.event.addDomListener(map, 'click', function(evt) {
+    //infoWindow.hide();
+  //});
+
+  //return marker;
 }
