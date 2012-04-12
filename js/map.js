@@ -40,7 +40,6 @@ function setMapPolygons(map, cases){
     return model.toJSON().country_iso.toUpperCase();
   });
 
-  console.log(selectedCountries);
   var style = "#ogp_countries {polygon-fill:#D0EAF5;polygon-opacity: 1;line-opacity:0;line-color: #FFFFFF;";
 
   _.each(selectedCountries, function(value) {
@@ -49,24 +48,25 @@ function setMapPolygons(map, cases){
 
   style += "}";
 
-    cartodb_leaflet = new L.CartoDBLayer({
-      map_canvas:     'map',
-      map:            map,
-      user_name:      'ogp',
-      table_name:     'ogp_countries',
-      tile_style:     style,
-      infowindow:     false,
-      query:          'SELECT * FROM {{table_name}}',
-      auto_bound:     false,
-      debug:          false
-    });
+  cartodb_leaflet = new L.CartoDBLayer({
+    map_canvas:     'map',
+    map:            map,
+    user_name:      'ogp',
+    table_name:     'ogp_countries',
+    tile_style:     style,
+    infowindow:     false,
+    query:          'SELECT * FROM {{table_name}}',
+    auto_bound:     false,
+    debug:          false
+  });
 }
 
 var OGPIcon = L.Icon.extend({
   iconUrl: '/OGPLocator/img/marker_single_selected.png',
   shadowUrl: null,
   iconSize: new L.Point(19, 19),
-  iconAnchor: new L.Point(9, 9)
+  iconAnchor: new L.Point(9, 9),
+  popupAnchor: new L.Point(0, 5)
 });
 
 function addMarker(map, case_study){
@@ -76,23 +76,4 @@ function addMarker(map, case_study){
 
   map.addLayer(marker);
   marker.bindPopup(ich.infobox(case_study.toJSON()).html());
-
-  //var marker = new google.maps.Marker({
-    //position: new google.maps.LatLng(latlon[1], latlon[0]),
-    //map: map,
-    //title: case_study.get('name'),
-    //clickable: true,
-    //icon: '/OGPLocator/img/marker_single_selected.png'
-  //});
-
-  //google.maps.event.addDomListener(marker, 'click', function(evt) {
-    //infoWindow.setContent(case_study.toJSON());
-    //infoWindow.open(evt.latLng);
-  //});
-
-  //google.maps.event.addDomListener(map, 'click', function(evt) {
-    //infoWindow.hide();
-  //});
-
-  //return marker;
 }

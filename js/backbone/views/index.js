@@ -5,8 +5,8 @@ window.IndexView = Backbone.View.extend({
   markers: [],
 
   events: {
-    'click div#openbudget div#results div.search ul li a': 'showDetail',
-    'click div#map .infowindow h3 a':                         'showDetail',
+    'click div#openbudget div#results div.search ul li a':    'showDetail',
+    'click div#map h3 a':                                     'showDetail',
     'click div#openbudget header li.menu a.filter':           'toggleFilter',
     'click div#openbudget header li.menu':                    'stopPropagation',
     'click div#openbudget header div.filters ul li a':        'navigateToFilter',
@@ -97,6 +97,7 @@ window.IndexView = Backbone.View.extend({
   },
 
   showDetail: function(evt){
+    console.log(evt);
     evt.preventDefault();
     this.router.navigate($(evt.target).attr('href'), true);
   },

@@ -87,10 +87,10 @@ a:hover {text-decoration:underline; color:#C93B00;}
       #openbudget header nav .filters{
         position: absolute;
         display: none;
-        width: 135px;
+        width: 189px;
         left: 50%;
         top: 33px;
-        margin-left: -87.5px;
+        margin-left: -114.5px;
         padding: 0 20px;
         background: transparent url('/OGPLocator/img/menu_middle.png') repeat-y center center;
         text-align: left;
@@ -98,7 +98,7 @@ a:hover {text-decoration:underline; color:#C93B00;}
 
       #openbudget header nav .filters.show{
         display: block;
-        z-index: 1;
+        z-index: 10;
       }
 
         #openbudget header nav .filters img {
@@ -106,7 +106,7 @@ a:hover {text-decoration:underline; color:#C93B00;}
         }
 
         #openbudget header nav .filters img.border_top {
-          top: -17px;
+          top: -12px;
           left: 0;
         }
 
@@ -520,11 +520,11 @@ a:hover {text-decoration:underline; color:#C93B00;}
 		width: 56px;
 		height: 20px;
 	}
-		
+
 	#openbudget #case_detail a.facebook_button {
-		display: inline-block;		
-		background-image: url('/OGPLocator/img/facebook.jpeg');		
-		text-indent: -9999px;		
+		display: inline-block;
+		background-image: url('/OGPLocator/img/facebook.jpeg');
+		text-indent: -9999px;
 		width: 49px;
-		height: 24px;		
+		height: 24px;
 	}

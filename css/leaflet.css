@@ -319,10 +319,7 @@ a.leaflet-active {
 	 -webkit-box-shadow: 0 1px 14px #999;
 	}
 .leaflet-popup-content-wrapper {
-	-moz-border-radius: 20px;
-	-webkit-border-radius: 20px;
-	border-radius: 20px;
-	}
+}
 .leaflet-popup-content {
 	font: 12px/1.4 "Helvetica Neue", Arial, Helvetica, sans-serif;
 	}

@@ -16,6 +16,7 @@
 	<link href="/OGPLocator/css/base.css"        rel="stylesheet"  type="text/css" >
 	<link href="/OGPLocator/css/style.css"       rel="stylesheet"  type="text/css" >
   <link href="/OGPLocator/css/leaflet.css"     rel="stylesheet"  type="text/css" />
+  <link href="/OGPLocator/css/infobox.css"     rel="stylesheet"  type="text/css" />
   <!--[if lte IE 8]>
     <link href="/OGPLocator/css/leaflet.ie.css"  rel="stylesheet"  type="text/css" />
   <![endif]-->
@@ -307,13 +308,12 @@
       <div class="content">
       <div class="header">
       <hgroup>
-      <h3><a href="!detail/{{cartodb_id}}">{{title}}</a></h3>
+      <h3><a href="#!detail/{{cartodb_id}}">{{title}}</a></h3>
       <p>{{topic}} &middot; {{country}}</p>
       </hgroup>
       </div>
       </div>
-      <a href="#" class="close">x</a>
-      <div class="t"></div><div class="b"></div>
+      <a href="#" class="close leaflet-popup-close-button">x</a>
     </div>
   </script>
 <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->

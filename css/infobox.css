@@ -1,13 +1,12 @@
-#map .infowindow {
+#map .leaflet-popup {
   position: absolute;
   padding: 10px 20px;
-  background: transparent url('/OGPLocator/img/infowindow_middle.png') repeat-y center center;
 }
 
-  #map .infowindow .close {
+  #map .leaflet-popup .close {
     position: absolute;
-    top: 0px;
-    right: 8px;
+    top: 8px;
+    right: 18px;
     display: block;
     padding:3px;
     font:normal 12px Arial;
@@ -15,32 +14,32 @@
     text-decoration:none;
   }
 
-  #map .infowindow .close:hover {
+  #map .leaflet-popup .close:hover {
     color:#555555;
-  }  
+  }
 
-  #map .infowindow .t, #map .infowindow .b {
+  #map .leaflet-popup .t, #map .leaflet-popup .b {
     position: absolute;
     left: 0;
     width: 250px;
   }
 
-  #map .infowindow .t {
+  #map .leaflet-popup .t {
     top: -4px;
     height: 4px;
     background: transparent url('/OGPLocator/img/infowindow_top.png') no-repeat center center;
   }
 
-  #map .infowindow .b {
+  #map .leaflet-popup .b {
     bottom: -14px;
     height: 14px;
     background: transparent url('/OGPLocator/img/infowindow_bottom.png') no-repeat center center;
   }
 
-  #map .infowindow .content {
+  #map .leaflet-popup .content {
   }
 
-    #map .infowindow .content h3 {
+    #map .leaflet-popup .content h3 {
       margin: 3px 0;
       padding:0;
       line-height:21px;
@@ -48,15 +47,15 @@
       text-transform: none;
     }
 
-    #map .infowindow .content h3 a {
+    #map .leaflet-popup .content h3 a {
       color:#EB4600;
     }
 
-    #map .infowindow .content h3 a:hover {
+    #map .leaflet-popup .content h3 a:hover {
       color:#C93B00;
     }
 
-    #map .infowindow .content p {
+    #map .leaflet-popup .content p {
       padding:0;
       margin:10px 0 0;
       font-size:13px;
