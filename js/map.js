@@ -57,7 +57,6 @@ function setMapPolygons(map, cases){
       tile_style:     style,
       infowindow:     false,
       query:          'SELECT * FROM {{table_name}}',
-      interactivity:  false,
       auto_bound:     false,
       debug:          false
     });
@@ -76,7 +75,7 @@ function addMarker(map, case_study){
   var marker = new L.Marker(new L.LatLng(latlon[1], latlon[0]), {icon: icon});
 
   map.addLayer(marker);
-  marker.bindPopup(ich.infobox(case_study).html());
+  marker.bindPopup(ich.infobox(case_study.toJSON()).html());
 
   //var marker = new google.maps.Marker({
     //position: new google.maps.LatLng(latlon[1], latlon[0]),
