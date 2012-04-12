@@ -111,8 +111,13 @@ a.leaflet-active {
 	border-radius: 7px;
 	}
 .leaflet-control-zoom {
-	padding: 5px;
-	background: rgba(0, 0, 0, 0.25);
+	position:absolute;
+  top:10px;
+  /*right:10px;*/
+  left:912px;
+  width:38px;
+  height:68px;
+  margin:0!important;
 	}
 .leaflet-control-zoom a {
 	background-color: rgba(255, 255, 255, 0.75);
@@ -123,26 +128,29 @@ a.leaflet-active {
 	display: block;
 	}
 .leaflet-control-zoom a {
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
-	width: 19px;
-	height: 19px;
-	}
-.leaflet-control-zoom a:hover {
-	background-color: #fff;
-	}
-.leaflet-big-buttons .leaflet-control-zoom a {
-	width: 27px;
-	height: 27px;
+  position:relative;
+	float:left!important;
+	width: 38px!important;
+	height: 34px!important;
 	}
 .leaflet-control-zoom-in {
-	background-image: url(../img/zoom-in.png);
-	margin-bottom: 5px;
-	}
+  background:url('../img/zoom.png') no-repeat 0 0!important;
+  }
+.leaflet-control-zoom-in:hover {
+	background-position:-38px 0!important;
+  }
+.leaflet-control-zoom-in:active {
+  background-position:-76px 0!important;
+  }
 .leaflet-control-zoom-out {
-	background-image: url(../img/zoom-out.png);
+	background:url('../img/zoom.png') no-repeat 0 -34px!important;
 	}
+.leaflet-control-zoom-out:hover {
+  background-position:-38px -34px!important;
+  }
+.leaflet-control-zoom-out:active {
+  background-position:-76px -34px!important;
+  }
 
 .leaflet-control-layers {
 	-moz-box-shadow: 0 0 7px #999;
