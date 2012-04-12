@@ -48,7 +48,11 @@ window.IndexView = Backbone.View.extend({
 
     setMapPolygons(this.map, cases || Cases.models);
     this._cleanMarkers();
-    _.each(cases || Cases.models, function(case_study){
+
+    var ordered_cases = _.sortBy((cases || Cases.models), function(model){
+      return model.get('title');
+    });
+    _.each(ordered_cases, function(case_study){
       this.$el.find('#results .search ul').append(ich.index_list_item(case_study.toJSON()));
       this.markers.push(addMarker(this.map, case_study));
     }, this);
