@@ -25,9 +25,9 @@ window.IndexView = Backbone.View.extend({
   },
 
   render: function(){
-    this.$el.html(this.template);
+    document.title = 'Experience Locator';
 
-    $('head title').text('Experience Locator');
+    this.$el.html(this.template);
 
     this._renderFiltersLists();
 
@@ -52,7 +52,7 @@ window.IndexView = Backbone.View.extend({
     });
 
     _.each(ordered_cases, function(case_study){
-      addMarker(this.map, case_study);
+      this.markers.push(addMarker(this.map, case_study));
       this.$el.find('#results .search ul').append(ich.index_list_item(case_study.toJSON()));
     }, this);
 
@@ -67,8 +67,8 @@ window.IndexView = Backbone.View.extend({
 
   _cleanMarkers: function(){
     _.each(this.markers, function(marker){
-      marker.setMap(null);
-    });
+      this.map.removeLayer(marker);
+    }, this);
     this.markers = [];
   },
 
@@ -97,7 +97,6 @@ window.IndexView = Backbone.View.extend({
   },
 
   showDetail: function(evt){
-    console.log(evt);
     evt.preventDefault();
     this.router.navigate($(evt.target).attr('href'), true);
   },

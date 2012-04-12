@@ -6,11 +6,11 @@
  *               Licensed under <a
  *               href="http://opensource.org/licenses/mit-license.php">MIT</a>
  *               license.<br/> This library lets you to use CartoDB with Leaflet.
- *                 
+ *
  */
- 
- 
- 
+
+
+
 if (typeof(L.CartoDBLayer) === "undefined") {
   /**
    * @params {}
@@ -23,13 +23,13 @@ if (typeof(L.CartoDBLayer) === "undefined") {
    *    infowindow    -     If you want to see infowindows when click in a geometry (opcional - default = false)
    *    auto_bound    -     Let cartodb auto-bound-zoom in the map (opcional - default = false)
    */
-   
+
   L.CartoDBLayer = function (params) {
-    
+
     this.params = params;
 
     if (this.params.auto_bound)   autoBound(this.params);     // Bounds? CartoDB does it.
-    
+
     if (this.params.infowindow) {
       addWaxCartoDBTiles(this.params)
     } else {
@@ -37,10 +37,10 @@ if (typeof(L.CartoDBLayer) === "undefined") {
     }
 
     addCartodb();
-    
+
     this.params.visible = true,
     this.params.active = true;
-    
+
     // Zoom to cartodb geometries
     function autoBound(params) {
       // Zoom to your geometries
@@ -57,12 +57,12 @@ if (typeof(L.CartoDBLayer) === "undefined") {
             var coor2 = coordinates[1].split(' ');
 
             // Check bounds
-            if (coor1[0] >  180 || coor1[0] < -180 || coor1[1] >  90 || coor1[1] < -90 
+            if (coor1[0] >  180 || coor1[0] < -180 || coor1[1] >  90 || coor1[1] < -90
               || coor2[0] >  180 || coor2[0] < -180 || coor2[1] >  90  || coor2[1] < -90) {
               coor1[0] = '-30';
-              coor1[1] = '-50'; 
-              coor2[0] = '110'; 
-              coor2[1] =  '80'; 
+              coor1[1] = '-50';
+              coor2[0] = '110';
+              coor2[1] =  '80';
             }
 
             var pos1 = new L.LatLng(parseFloat(coor1[1]),parseFloat(coor1[0]));
@@ -79,14 +79,14 @@ if (typeof(L.CartoDBLayer) === "undefined") {
 
     // Add Cartodb logo :)
     function addCartodb() {
-      var cartodb_link = document.createElement("a");
-      cartodb_link.setAttribute('class','cartodb_logo');
-      cartodb_link.setAttribute('href','http://www.cartodb.com');
-      cartodb_link.setAttribute('target','_blank');
-      cartodb_link.innerHTML = "CartoDB";
-      document.body.appendChild(cartodb_link);
+      //var cartodb_link = document.createElement("a");
+      //cartodb_link.setAttribute('class','cartodb_logo');
+      //cartodb_link.setAttribute('href','http://www.cartodb.com');
+      //cartodb_link.setAttribute('target','_blank');
+      //cartodb_link.innerHTML = "CartoDB";
+      //document.body.appendChild(cartodb_link);
     }
-    
+
     // Add cartodb tiles to the map
     function addSimpleCartoDBTiles(params) {
 
@@ -101,7 +101,7 @@ if (typeof(L.CartoDBLayer) === "undefined") {
       params.layer = cartodb_layer;
       params.map.addLayer(cartodb_layer,false);
     }
-    
+
     // Add cartodb tiles to the map
     function addWaxCartoDBTiles(params) {
       // interaction placeholder
@@ -136,11 +136,11 @@ if (typeof(L.CartoDBLayer) === "undefined") {
 
     // Generate tile json for wax
     function generateTileJson(params) {
-      var core_url = 'http://' + params.user_name + '.cartodb.com';  
+      var core_url = 'http://' + params.user_name + '.cartodb.com';
       var base_url = core_url + '/tiles/' + params.table_name + '/{z}/{x}/{y}';
       var tile_url = base_url + '.png';
       var grid_url = base_url + '.grid.json';
-      
+
       // SQL?
       if (params.query) {
         var query = 'sql=' + encodeURIComponent(params.query.replace(/\{\{table_name\}\}/g,params.table_name));
@@ -154,11 +154,11 @@ if (typeof(L.CartoDBLayer) === "undefined") {
         tile_url = wax.util.addUrlData(tile_url, style);
         grid_url = wax.util.addUrlData(grid_url, style);
       }
-      
+
       // Build up the tileJSON
       // TODO: make a blankImage a real 'empty tile' image
       return {
-        blankImage: 'blank_tile.png', 
+        blankImage: 'blank_tile.png',
         tilejson: '1.0.0',
         scheme: 'xyz',
         tiles: [tile_url],
@@ -170,13 +170,13 @@ if (typeof(L.CartoDBLayer) === "undefined") {
         }
       };
     }
-   
+
 
 
     // Update tiles & interactivity layer;
     L.CartoDBLayer.prototype.update = function(changes) {
       // Hide the infowindow
-      if (this.params.popup) 
+      if (this.params.popup)
         this.params.popup._close();
 
       // What do we support change? - tile_style | query | infowindow
@@ -191,7 +191,7 @@ if (typeof(L.CartoDBLayer) === "undefined") {
             }
           } else {
             this.params[param] = changes[param];
-          }         
+          }
         }
 
       } else {
@@ -210,7 +210,7 @@ if (typeof(L.CartoDBLayer) === "undefined") {
         addWaxCartoDBTiles(this.params)
       else
         addSimpleCartoDBTiles(this.params);
-      
+
       this.params.active = true;
       this.params.visible = true;
     };
@@ -236,14 +236,14 @@ if (typeof(L.CartoDBLayer) === "undefined") {
       this.params.active = false;
     };
 
-    
+
     // Hide layers from the map
     L.CartoDBLayer.prototype.hide = function() {
       if (this.params.visible)
         this.destroy();
       this.params.visible = false;
     };
-        
+
 
     // Show layers from the map
     L.CartoDBLayer.prototype.show = function() {
@@ -338,7 +338,7 @@ L.CartoDBInfowindow = L.Class.extend({
     if (this._opened) {
       var div = this._container
         , that = this;
-    
+
       emile(div,{
         bottom: '-=' + 10 + 'px',
         opacity: 0,
@@ -352,7 +352,7 @@ L.CartoDBInfowindow = L.Class.extend({
       this._opened = false;
     }
   },
-  
+
   _initLayout:function(){
     this._container=L.DomUtil.create("div","leaflet-popup");
     this._closeButton=L.DomUtil.create("a","leaflet-popup-close-button",this._container);
@@ -369,7 +369,7 @@ L.CartoDBInfowindow = L.Class.extend({
   _update: function() {
     var that = this
       , infowindow_sql = 'SELECT * FROM ' + this.options.table_name + ' WHERE cartodb_id=' + this._feature;
-    
+
     this._container.style.visibility = 'hidden';
 
     // If the table is private, you can't run any api methods
@@ -400,9 +400,9 @@ L.CartoDBInfowindow = L.Class.extend({
 
   _updateContent: function(variables) {
     if (!this._feature) return;
-    
+
     var that = this;
-    
+
     // Remove the list items
     this._contentNode.innerHTML = '';
 
@@ -414,7 +414,7 @@ L.CartoDBInfowindow = L.Class.extend({
        }
      }
     this._contentNode.innerHTML = content;
-    
+
     // Show cartodb-id
     this._tipContainer.innerHTML = '<label>id: <strong>'+this._feature+'</strong></label>';
   },

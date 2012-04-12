@@ -76,4 +76,6 @@ function addMarker(map, case_study){
 
   map.addLayer(marker);
   marker.bindPopup(ich.infobox(case_study.toJSON()).html());
+
+  return marker;
 }
