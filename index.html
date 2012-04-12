@@ -114,7 +114,7 @@
       {{#subtitle_country}}
       <span>&middot;</span>
       {{/subtitle_country}}
-      <a href="!detail/{{cartodb_id}}" class="where">Open Budget in {{country}}</a>
+      <a href="!detail/{{cartodb_id}}" class="where">{{topic}}} in {{country}}</a>
       <p>{{{short_overview}}}</p>
     </li>
   </script>
@@ -189,12 +189,6 @@
           <h4>Classification</h4>
 
           <ul>
-            {{#category}}
-            <li>
-              <h6>Category</h6>
-              <span>{{category}}</span>
-            </li>
-            {{/category}}
             {{#topic}}
             <li>
               <h6>Topic</h6>
@@ -311,7 +305,7 @@
       <div class="header">
       <hgroup>
       <h3><a href="!detail/{{cartodb_id}}">{{title}}</a></h3>
-      <p>{{category}} &middot; {{country}}</p>
+      <p>{{topic}} &middot; {{country}}</p>
       </hgroup>
       </div>
       </div>
