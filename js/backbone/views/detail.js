@@ -5,7 +5,6 @@ window.DetailView = Backbone.View.extend({
   initialize: function(){
     this.router = this.options.router;
     this.case_id = this.options.case_id;
-    Cases.bind('reset', this.render, this);
   },
 
   events: {
