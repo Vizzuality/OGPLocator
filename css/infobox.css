@@ -3,18 +3,19 @@
   padding: 10px 20px;
 }
 
-  #map .leaflet-popup .close {
+  #map .leaflet-popup .leaflet-popup-close-button {
     position: absolute;
-    top: 8px;
-    right: 18px;
+    top: 10px;
+    right: 20px;
     display: block;
     padding:3px;
     font:normal 12px Arial;
     color:#999999;
     text-decoration:none;
+    background: transparent url('/OGPLocator/img/close_icon.png') no-repeat center center;
   }
 
-  #map .leaflet-popup .close:hover {
+  #map .leaflet-popup .leaflet-popup-close-button:hover {
     color:#555555;
   }
 
