@@ -16,7 +16,7 @@ var CaseStudy = Backbone.Model.extend({
     var topic_name = Topics.getByCartoDBId(this.get('topic_id')).get('name');
 
     var json_object = _.extend(this.attributes, {
-      short_overview: this._truncate(this.get('overview'), 130),
+      short_overview: this._truncate(this.get('overview'), 165),
       classification: country_name || topic_name,
       resources: this.get('resources_media') || this.get('resources_document') || this.get('resources_links'),
       country: country_name,
