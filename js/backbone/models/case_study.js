@@ -16,6 +16,7 @@ var CaseStudy = Backbone.Model.extend({
     var topic_name = Topics.getByCartoDBId(this.get('topic_id')).get('name');
 
     var json_object = _.extend(this.attributes, {
+      short_overview: this._truncate(this.get('overview'), 130),
       classification: country_name || topic_name,
       resources: this.get('resources_media') || this.get('resources_document') || this.get('resources_links'),
       country: country_name,
@@ -72,5 +73,19 @@ var CaseStudy = Backbone.Model.extend({
       });
 
     }})
+  },
+
+  _truncate: function (string, limit) {
+    if (string.length > limit) {
+      var string_truncated = string.substring(0, limit);
+      string_truncated = string_truncated.replace(/w+$/, '');
+
+      string_truncated += '<a href="#" \
+        onclick="this.parentNode.innerHTML= \
+        unescape(\''+string+'\');return false;">...</a>';
+      return string_truncated;
+    }
+    return string;
   }
+
 });
