@@ -135,12 +135,32 @@ a:hover {text-decoration:underline; color:#C93B00;}
           text-align:left;
         }
 
+      a#cartodb_logo {
+        position:             absolute;
+        bottom:               8px;
+        left:                 8px;
+        display:              block;
+        width:                71px;
+        height:               29px;
+        background:           url('http://cartodb.s3.amazonaws.com/static/new_logo.png') no-repeat 0 0;
+        text-indent:          -9999px;
+        line-height:          0;
+        font-size:            0;
+        text-transform:       uppercase;
+      }
+
+      div.wrap {
+        position:relative;
+        width:xxx;
+        height:xxx;
+      }
 
   #openbudget #map{
     width: 958px;
     height: 320px;
     margin: 4px 0 32px;
-    border: 1px solid rgba(0, 0, 0, 0.15)
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background-color: #B6DDEE;
   }
 
     #openbudget #map .custom-zoom div{
