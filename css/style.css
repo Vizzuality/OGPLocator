@@ -485,3 +485,19 @@ a:hover {text-decoration:underline; color:#C93B00;}
     font-size: 13px;
     color: #8A9298;
   }
+
+	#openbudget #case_detail a.tweet_button {
+		display: inline-block;
+		background-image: url('/OGPLocator/img/tweet.png');
+		text-indent: -9999px;
+		width: 56px;
+		height: 20px;
+	}
+		
+	#openbudget #case_detail a.facebook_button {
+		display: inline-block;		
+		background-image: url('/OGPLocator/img/facebook.jpeg');		
+		text-indent: -9999px;		
+		width: 49px;
+		height: 24px;		
+	}
