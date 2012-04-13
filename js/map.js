@@ -9,7 +9,8 @@ var map_options = {
   zoomControl: false
 };
 
-var infoWindow = null;
+var infoWindow = null
+  , cartodb_leaflet;
 
 function CustomZoomControl(map){
   var controlDiv = document.createElement('div');
@@ -40,25 +41,30 @@ function setMapPolygons(map, cases){
     return model.toJSON().country_iso.toUpperCase();
   });
 
-  var style = "#ogp_countries {polygon-fill:#D0EAF5;polygon-opacity: 1;line-opacity:0;line-color: #FFFFFF;";
+  var style = "#ogp_countries {polygon-fill:#D0EAF5; polygon-opacity: 1; line-opacity:0;";
 
   _.each(selectedCountries, function(value) {
-    style += '[iso_a2="' + value + '"]{polygon-fill:#FFF;line-opacity:0.4;line-color: #000;}';
+    style += '[iso_a2="' + value + '"]{polygon-fill:#FFF;line-opacity:1;line-color:#CDCDCD;}';
   });
 
   style += "}";
 
-  cartodb_leaflet = new L.CartoDBLayer({
-    map_canvas:     'map',
-    map:            map,
-    user_name:      'ogp',
-    table_name:     'ogp_countries',
-    tile_style:     style,
-    infowindow:     false,
-    query:          'SELECT * FROM {{table_name}}',
-    auto_bound:     false,
-    debug:          false
-  });
+  if (!cartodb_leaflet) {
+    cartodb_leaflet = new L.CartoDBLayer({
+      map_canvas:     'map',
+      map:            map,
+      user_name:      'ogp',
+      table_name:     'ogp_countries',
+      tile_style:     style,
+      infowindow:     false,
+      query:          'SELECT * FROM {{table_name}}',
+      auto_bound:     false,
+      debug:          false
+    });
+    map.addLayer(cartodb_leaflet);
+  } else {
+    cartodb_leaflet.setStyle(style);
+  }
 }
 
 var OGPIcon = L.Icon.extend({
