@@ -56,7 +56,6 @@ window.DetailView = Backbone.View.extend({
   },
 
   _loadDisqus: function(){
-    //disqus_url = 'detail/' + self.case_id;
     disqus_url = window.location.href;
 
     $.getScript ("http://" + disqus_shortname + ".disqus.com/embed.js");

@@ -8,7 +8,7 @@ var MainRouter = Backbone.Router.extend({
 
   routes: {
     '':                         'index',
-    'detail/:id':               'detail',
+    '!detail/:id':              'detail',
     ':filter/:challenge_id':    'filter'
   },
 

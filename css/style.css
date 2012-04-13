@@ -77,6 +77,7 @@ a:hover {text-decoration:underline; color:#C93B00;}
 
     #openbudget header nav li.menu{
       position: relative;
+      display: inline;
       background: url('../img/arrow_downwards.png') no-repeat center right;
       padding-right: 8px;
       margin: 0 0 0 20px;

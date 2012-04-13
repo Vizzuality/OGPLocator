@@ -21,7 +21,7 @@
     <link href="/OGPLocator/css/leaflet.ie.css"  rel="stylesheet"  type="text/css" />
   <![endif]-->
 
-	<script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
+	<script src="js/libs/modernizr-2.5.3.js"></script>
 </head>
 <body>
 
@@ -113,12 +113,12 @@
 
   <script id="index_list_item" type="text/html">
     <li>
-      <h3><a href="detail/{{cartodb_id}}">{{title}}</a></h3>
-      <a href="detail/{{cartodb_id}}" class="desc">{{subtitle}}</a>
+      <h3><a href="!detail/{{cartodb_id}}">{{title}}</a></h3>
+      <a href="!detail/{{cartodb_id}}" class="desc">{{subtitle}}</a>
       {{#subtitle_country}}
       <span>&middot;</span>
       {{/subtitle_country}}
-      <a href="detail/{{cartodb_id}}" class="where">{{topic}}} in {{country}}</a>
+      <a href="!detail/{{cartodb_id}}" class="where">{{topic}}} in {{country}}</a>
       <p>{{{short_overview}}}</p>
     </li>
   </script>
@@ -286,7 +286,7 @@
 
   <script id="detail_related_item" type="text/html">
     <li>
-      <h3><a href="detail/{{cartodb_id}}">{{title}}</a></h3>
+      <h3><a href="!detail/{{cartodb_id}}">{{title}}</a></h3>
       <span>{{subtitle}}</span>
       {{#subtitle_country}}
       <span>&middot;</span>
@@ -308,7 +308,7 @@
       <div class="content">
       <div class="header">
       <hgroup>
-      <h3><a href="detail/{{cartodb_id}}">{{title}}</a></h3>
+      <h3><a href="#!detail/{{cartodb_id}}">{{title}}</a></h3>
       <p>{{topic}} &middot; {{country}}</p>
       </hgroup>
       </div>
