@@ -244,12 +244,19 @@
         </div>
         {{/resources_links_html}}
 
+        <div>
+          <h4>Spread the word</h4>
+          <p><a href="#" class="tweet_button">Tweet it</a></p>
+          <p><a href="#" class="facebook_button">Share it on Facebook</a></p>
+        </div>
+
       	<div class="last">
           <ul>
           	<li><a href="#">PDF version</a></li>
-          	<li><a href="#">Translate it</a></li>
-          	<li><a href="#" class="tweet_button">Tweet it</a></li>
-          	<li><a href="#" class="facebook_button">Share it on Facebook</a></li>
+            <li>
+              <div id="google_translate_element"></div>
+            </li>
+
           </ul>
       	</div>
 
@@ -259,6 +266,16 @@
 
   </script>
 
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        autoDisplay: false,
+        layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+      }, 'google_translate_element');
+    }
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   <script id="detail_related_item" type="text/html">
     <li>
       <h3><a href="!detail/{{cartodb_id}}">{{title}}</a></h3>

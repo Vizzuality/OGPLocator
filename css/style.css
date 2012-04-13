@@ -516,7 +516,13 @@ a:hover {text-decoration:underline; color:#C93B00;}
   }
 
 	#openbudget #case_detail a.tweet_button {
-		display: inline-block;
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: top;
+    zoom: 1;
+    *display: inline;
+    _height: 20px;
+    margin-top: 10px;
 		background-image: url('/OGPLocator/img/tweet.png');
 		text-indent: -9999px;
 		width: 56px;
@@ -524,9 +530,30 @@ a:hover {text-decoration:underline; color:#C93B00;}
 	}
 
 	#openbudget #case_detail a.facebook_button {
-		display: inline-block;
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: top;
+    zoom: 1;
+    *display: inline;
+    _height: 24px;
 		background-image: url('/OGPLocator/img/facebook.jpeg');
 		text-indent: -9999px;
 		width: 49px;
 		height: 24px;
 	}
+
+  #openbudget #case_detail #google_translate_element {
+
+  }
+
+    #openbudget #case_detail #google_translate_element div {
+      display: block !important;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    #openbudget #case_detail #google_translate_element a {
+      color: inherit;
+    }
+
