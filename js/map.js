@@ -41,7 +41,7 @@ function setMapPolygons(map, cases){
     return model.toJSON().country_iso.toUpperCase();
   });
 
-  var style = "#ogp_countries {polygon-fill:#D0EAF5; polygon-opacity: 1; line-opacity:0;";
+  var style = "#ogp_countries {";
 
   _.each(selectedCountries, function(value) {
     style += '[iso_a2="' + value + '"]{polygon-fill:#FFF;line-opacity:1;line-color:#CDCDCD;}';

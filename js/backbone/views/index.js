@@ -62,6 +62,18 @@ window.IndexView = Backbone.View.extend({
   _initMap: function(){
     if (!this.map){
       this.map = new L.Map('map').setView(new L.LatLng(37.26312408340919, -4.66094970703125), 2);
+
+      this.map.addLayer(new L.CartoDBLayer({
+        map_canvas:     'map',
+        map:            this.map,
+        user_name:      'ogp',
+        table_name:     'ogp_countries',
+        tile_style:     "#ogp_countries {polygon-fill:#D0EAF5; polygon-opacity: 1; line-opacity:0; line-color: rgba(0, 0, 0, 0);}",
+        infowindow:     false,
+        query:          'SELECT * FROM {{table_name}}',
+        auto_bound:     false,
+        debug:          false
+      }));
     }
   },
 
