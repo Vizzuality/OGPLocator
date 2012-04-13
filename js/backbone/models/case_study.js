@@ -17,14 +17,10 @@ var CaseStudy = Backbone.Model.extend({
 
     var json_object = _.extend(this.attributes, {
       short_overview: this._truncate(this.get('overview'), 165),
-      classification: country_name || topic_name,
-      resources: this.get('resources_media') || this.get('resources_document') || this.get('resources_links'),
       country: country_name,
       topic: topic_name,
-      category: Categories.getByCartoDBId(this.get('category_id')).get('name'),
       country_iso: Countries.getByCartoDBId(this.get('country_id')).get('iso'),
       subtitle_country: country_name && this.get('subtitle'),
-      contact: this.get('contact_information') || this.get('website'),
       video_player_url: this.youtube_player_url()
     });
 

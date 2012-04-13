@@ -338,7 +338,7 @@ a:hover {text-decoration:underline; color:#C93B00;}
           margin: 0;
         }
 
-        #openbudget .two_columns .right div p {
+        #openbudget .two_columns .right div p, #openbudget .two_columns .right div span {
           margin: 0 0 15px 0;
           font-size: 13px;
 					line-height: 18px;

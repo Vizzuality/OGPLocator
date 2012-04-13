@@ -188,21 +188,12 @@
           <p>{{country}}</p>
         </div>
 
-        {{#classification}}
-      	<div>
-          <h4>Classification</h4>
-
-          <ul>
-            {{#topic}}
-            <li>
-              <h6>Topic</h6>
-              <span>{{topic}}</span>
-            </li>
-            {{/topic}}
-          </ul>
-
+        {{#topic}}
+        <div>
+          <h4>Topic</h4>
+          <span>{{topic}}</span>
       	</div>
-        {{/classification}}
+        {{/topic}}
 
         {{#implementing_partners_html}}
       	<div>
@@ -218,56 +209,40 @@
       	</div>
         {{/relevant_networks_html}}
 
-        {{#contact}}
+        {{#contact_information_html}}
       	<div>
-          <h4>Contact</h4>
-          <ul>
-            {{#contact_information_html}}
-            <li>
-              <h6>Contact Information</h6>
-              <p>{{{contact_information_html}}}</p>
-            </li>
-            {{/contact_information_html}}
-            {{#website_html}}
-            <li>
-              <h6>Web Site</h6>
-              <p>{{{website_html}}}</p>
-            </li>
-            {{/website_html}}
-          </ul>
+          <h4>Contact Information</h4>
+          <p>{{{contact_information_html}}}</p>
       	</div>
-        {{/contact}}
+        {{/contact_information_html}}
+        {{#website_html}}
+        <div>
+          <h4>Web Site</h4>
+          <p>{{{website_html}}}</p>
+        </div>
+        {{/website_html}}
 
 
-        {{#resources}}
-      	<div>
-          <h4>Related resources</h4>
-          <ul>
+        {{#resources_media_html}}
+        <div>
+          <h4>Media</h4>
+          <p>{{{resources_media_html}}}</p>
+        </div>
+        {{/resources_media_html}}
 
-            {{#resources_media_html}}
-          	<li>
-          		<h6>Media</h6>
-              <p>{{{resources_media_html}}}</p>
-          	</li>
-            {{/resources_media_html}}
+        {{#resources_document_html}}
+        <div>
+          <h4>Documents</h4>
+          <p>{{{resources_document_html}}}</p>
+        </div>
+        {{/resources_document_html}}
 
-            {{#resources_document_html}}
-          	<li>
-          		<h6>Documents</h6>
-              <p>{{{resources_document_html}}}</p>
-          	</li>
-            {{/resources_document_html}}
-
-            {{#resources_links_html}}
-          	<li>
-          		<h6>Links & Further reading</h6>
-              <p>{{{resources_links_html}}}</p>
-          	</li>
-            {{/resources_links_html}}
-
-          </ul>
-      	</div>
-        {{/resources}}
+        {{#resources_links_html}}
+        <div>
+          <h4>Links & Further reading</h4>
+          <p>{{{resources_links_html}}}</p>
+        </div>
+        {{/resources_links_html}}
 
       	<div class="last">
           <ul>
