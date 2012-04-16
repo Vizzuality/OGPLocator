@@ -16,7 +16,7 @@ var CaseStudy = Backbone.Model.extend({
     var topic_name = Topics.getByCartoDBId(this.get('topic_id')).get('name');
 
     var json_object = _.extend(this.attributes, {
-      short_overview: this._truncate(this.get('overview'), 165),
+      short_overview: this._truncate(this.get('overview'), 158),
       country: country_name,
       topic: topic_name,
       country_iso: Countries.getByCartoDBId(this.get('country_id')).get('iso'),
@@ -78,7 +78,7 @@ var CaseStudy = Backbone.Model.extend({
 
       string_truncated += '<a href="#" \
         onclick="this.parentNode.innerHTML= \
-        unescape(\''+string+'\');return false;">...</a>';
+        unescape(\''+string+'\');return false;">... Learn more.</a>';
       return string_truncated;
     }
     return string;
