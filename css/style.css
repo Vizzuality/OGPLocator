@@ -16,8 +16,9 @@ h1 {
 }
 
 h2 {
-  font-size: 32px;
+  font-size: 24px;
   font-family: "Gill Sans", Geneva, Tahoma, Arial, sans-serif;
+  line-height: 32px;
 }
 
 h3 {
@@ -71,7 +72,7 @@ a:hover {text-decoration:underline; color:#C93B00;}
   #openbudget header nav{
     float:right;
     width:auto;
-    margin:27px 0 0 0;
+    margin:21px 0 0 0;
     text-align: right;
   }
 
