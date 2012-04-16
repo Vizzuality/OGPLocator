@@ -76,9 +76,9 @@ var CaseStudy = Backbone.Model.extend({
       var string_truncated = string.substring(0, limit);
       string_truncated = string_truncated.replace(/w+$/, '');
 
-      string_truncated += '<a href="#" \
+      string_truncated += '... <a href="#" \
         onclick="this.parentNode.innerHTML= \
-        unescape(\''+string+'\');return false;">... Learn more.</a>';
+        unescape(\''+string+'\');return false;">Learn more</a>.';
       return string_truncated;
     }
     return string;

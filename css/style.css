@@ -315,6 +315,10 @@ a:hover {text-decoration:underline; color:#C93B00;}
           color: #999999;
         }
 
+        #openbudget #results .search ul li p a {
+          color: #EB4600;
+        }
+
         #openbudget #results .search ul li a.desc, #openbudget #results .search ul li a.where {
           font-size: 13px;
         }
