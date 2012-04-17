@@ -96,8 +96,8 @@ body{ font:16px/26px Helvetica, Helvetica Neue, Arial; }
 
 #title{ color:white; }
 
-::-moz-selection { background: transparent; color: #fff; text-shadow: none; }
-::selection      { background: transparent; color: #fff; text-shadow: none; }
+::-moz-selection { background: #FA5200; color: #fff; text-shadow: none; }
+::selection      { background: #FA5200; color: #fff; text-shadow: none; }
 
 /* ==============
     MOBILE: Menu
