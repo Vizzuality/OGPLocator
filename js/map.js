@@ -1,5 +1,6 @@
 var map_options = {
   zoom: 2,
+  center: new L.LatLng(55, 0),
   panControl: false,
   mapTypeControl: false,
   scaleControl: false,
@@ -65,6 +66,7 @@ function setMapPolygons(map, cases){
   } else {
     cartodb_leaflet.setStyle(style);
   }
+  
 }
 
 var OGPIcon = L.Icon.extend({

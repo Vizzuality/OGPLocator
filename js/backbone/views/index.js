@@ -61,7 +61,7 @@ window.IndexView = Backbone.View.extend({
 
   _initMap: function(){
     if (!this.map){
-      this.map = new L.Map('map').setView(new L.LatLng(37.26312408340919, -4.66094970703125), 2);
+      this.map = new L.Map('map').setView(new L.LatLng(16.26312408340919, -10.0), 2);
 
       this.map.addLayer(new L.CartoDBLayer({
         map_canvas:     'map',
