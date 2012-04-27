@@ -1,6 +1,7 @@
 var map_options = {
   zoom: 2,
   center: new L.LatLng(55, 0),
+  minZoom:1,
   panControl: false,
   mapTypeControl: false,
   scaleControl: false,
@@ -24,14 +25,6 @@ function CustomZoomControl(map){
   var controlZoomOut = document.createElement('div');
   controlZoomOut.className = 'out';
   controlDiv.appendChild(controlZoomOut);
-
-  google.maps.event.addDomListener(controlZoomIn, 'click', function() {
-    map.setZoom(map.getZoom() + 1);
-  });
-
-  google.maps.event.addDomListener(controlZoomOut, 'click', function() {
-    map.setZoom(map.getZoom() - 1);
-  });
 
   return controlDiv;
 }
